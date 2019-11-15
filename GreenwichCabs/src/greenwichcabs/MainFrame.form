@@ -6,6 +6,7 @@
     <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
       <Color id="Default Cursor"/>
     </Property>
+    <Property name="locationByPlatform" type="boolean" value="true"/>
     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
       <Dimension value="[800, 500]"/>
     </Property>
@@ -52,6 +53,9 @@
   <SubComponents>
     <Container class="javax.swing.JPanel" name="container">
       <Properties>
+        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+        </Property>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[800, 500]"/>
         </Property>
@@ -62,6 +66,10 @@
           <Dimension value="[800, 500]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="containerMouseDragged"/>
+        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="containerMousePressed"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
         <Property name="useNullLayout" type="boolean" value="false"/>
@@ -89,12 +97,15 @@
             <Property name="useNullLayout" type="boolean" value="false"/>
           </Layout>
           <SubComponents>
-            <Container class="javax.swing.JPanel" name="newJourneyButton1">
+            <Container class="javax.swing.JPanel" name="newJourneyButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6f" green="41" red="55" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newJourneyButtonMousePressed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="140" width="250" height="50"/>
@@ -106,9 +117,9 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                          <Component id="newJourneyIcon1" min="-2" max="-2" attributes="0"/>
+                          <Component id="newJourneyIcon" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="newJourneyLabel1" max="32767" attributes="0"/>
+                          <Component id="newJourneyLabel" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -118,8 +129,8 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="2" attributes="0">
-                              <Component id="newJourneyIcon1" alignment="2" max="32767" attributes="0"/>
-                              <Component id="newJourneyLabel1" alignment="2" max="32767" attributes="0"/>
+                              <Component id="newJourneyIcon" alignment="2" max="32767" attributes="0"/>
+                              <Component id="newJourneyLabel" alignment="2" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
                       </Group>
@@ -127,14 +138,14 @@
                 </DimensionLayout>
               </Layout>
               <SubComponents>
-                <Component class="javax.swing.JLabel" name="newJourneyIcon1">
+                <Component class="javax.swing.JLabel" name="newJourneyIcon">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/images/outline_commute_white_18dp.png"/>
                     </Property>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JLabel" name="newJourneyLabel1">
+                <Component class="javax.swing.JLabel" name="newJourneyLabel">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Segoe UI" size="14" style="1"/>
@@ -145,6 +156,9 @@
                     <Property name="text" type="java.lang.String" value="New Journey"/>
                     <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newJourneyLabelMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -154,6 +168,9 @@
                   <Color blue="64" green="2b" red="40" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addDriverButtonMousePressed"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="290" width="-1" height="-1"/>
@@ -204,6 +221,9 @@
                     <Property name="text" type="java.lang.String" value="Add Driver"/>
                     <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addDriverLabelMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -263,6 +283,9 @@
                     <Property name="text" type="java.lang.String" value="Edit Journey"/>
                     <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editJourneyLabelMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -322,6 +345,9 @@
                     <Property name="text" type="java.lang.String" value="Total of The Day"/>
                     <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="totalOfTheDayLabelMousePressed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -352,6 +378,9 @@
         </Container>
         <Container class="javax.swing.JPanel" name="windowButtons">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[50, 50]"/>
             </Property>
