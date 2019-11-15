@@ -100,7 +100,7 @@
             <Container class="javax.swing.JPanel" name="newJourneyButton">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="6f" green="41" red="55" type="rgb"/>
+                  <Color blue="64" green="2b" red="40" type="rgb"/>
                 </Property>
               </Properties>
               <Events>
@@ -154,7 +154,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="New Journey"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="newJourneyLabelMousePressed"/>
@@ -219,7 +218,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Add Driver"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="addDriverLabelMousePressed"/>
@@ -281,7 +279,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Edit Journey"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="editJourneyLabelMousePressed"/>
@@ -343,7 +340,6 @@
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="Total of The Day"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Record new journey"/>
                   </Properties>
                   <Events>
                     <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="totalOfTheDayLabelMousePressed"/>
@@ -396,7 +392,7 @@
           </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="750" y="0" width="-1" height="-1"/>
+              <AbsoluteConstraints x="740" y="10" width="-1" height="50"/>
             </Constraint>
           </Constraints>
 
@@ -414,7 +410,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="windowCloseButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="windowCloseButton" min="-2" pref="28" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>

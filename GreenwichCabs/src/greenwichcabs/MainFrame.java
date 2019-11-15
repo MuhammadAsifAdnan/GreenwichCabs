@@ -89,7 +89,7 @@ public class MainFrame extends javax.swing.JFrame {
         sidePane.setPreferredSize(new java.awt.Dimension(200, 500));
         sidePane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        newJourneyButton.setBackground(new java.awt.Color(85, 65, 111));
+        newJourneyButton.setBackground(new java.awt.Color(64, 43, 100));
         newJourneyButton.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 newJourneyButtonMousePressed(evt);
@@ -101,7 +101,6 @@ public class MainFrame extends javax.swing.JFrame {
         newJourneyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newJourneyLabel.setForeground(new java.awt.Color(255, 255, 255));
         newJourneyLabel.setText("New Journey");
-        newJourneyLabel.setToolTipText("Record new journey");
         newJourneyLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 newJourneyLabelMousePressed(evt);
@@ -143,7 +142,6 @@ public class MainFrame extends javax.swing.JFrame {
         addDriverLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addDriverLabel.setForeground(new java.awt.Color(255, 255, 255));
         addDriverLabel.setText("Add Driver");
-        addDriverLabel.setToolTipText("Record new journey");
         addDriverLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 addDriverLabelMousePressed(evt);
@@ -180,7 +178,6 @@ public class MainFrame extends javax.swing.JFrame {
         editJourneyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editJourneyLabel.setForeground(new java.awt.Color(255, 255, 255));
         editJourneyLabel.setText("Edit Journey");
-        editJourneyLabel.setToolTipText("Record new journey");
         editJourneyLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 editJourneyLabelMousePressed(evt);
@@ -217,7 +214,6 @@ public class MainFrame extends javax.swing.JFrame {
         totalOfTheDayLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalOfTheDayLabel.setForeground(new java.awt.Color(255, 255, 255));
         totalOfTheDayLabel.setText("Total of The Day");
-        totalOfTheDayLabel.setToolTipText("Record new journey");
         totalOfTheDayLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 totalOfTheDayLabelMousePressed(evt);
@@ -293,11 +289,11 @@ public class MainFrame extends javax.swing.JFrame {
             windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, windowButtonsLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, -1, -1));
+        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, 50));
 
         content.setBackground(new java.awt.Color(122, 72, 221));
         content.setMaximumSize(new java.awt.Dimension(600, 450));
