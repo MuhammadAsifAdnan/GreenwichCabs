@@ -5,30 +5,27 @@
  */
 package greenwichcabs;
 
-//import javax.swing.JLabel;
-import java.awt.Color;
-import javax.swing.*;
+import java.awt.*; // color, layout etc
+import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 
 /**
  *
  * @author user
  */
 public class MainFrame extends javax.swing.JFrame {
+    
+    JourneyForm journeyForm;
+    DayTotal dayTotalPanel;
+    DriverForm driverForm;
+    GridBagLayout contentPaneLayout;
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame() {
         initComponents();
-        customInitForComponents();
-    }
-
-    private void setActiveColor(JPanel jPanel) {
-        jPanel.setBackground(new Color(85,65,111));
-    }
-    
-    private void setDefaultColor(JPanel jPanel) {
-        jPanel.setBackground(new Color(64,43,100));
+        closeWindowButtonTextAlign();
+        setupContentPanel();
     }
     
     /**
@@ -58,7 +55,7 @@ public class MainFrame extends javax.swing.JFrame {
         appTitleUnderline = new javax.swing.JSeparator();
         windowButtons = new javax.swing.JPanel();
         windowCloseButton = new javax.swing.JLabel();
-        content = new javax.swing.JPanel();
+        contentPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -279,23 +276,23 @@ public class MainFrame extends javax.swing.JFrame {
 
         container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 40, 70));
 
-        content.setBackground(new java.awt.Color(122, 72, 221));
-        content.setMaximumSize(new java.awt.Dimension(600, 450));
-        content.setMinimumSize(new java.awt.Dimension(600, 450));
-        content.setPreferredSize(new java.awt.Dimension(600, 450));
+        contentPane.setBackground(new java.awt.Color(122, 72, 221));
+        contentPane.setMaximumSize(new java.awt.Dimension(600, 450));
+        contentPane.setMinimumSize(new java.awt.Dimension(600, 450));
+        contentPane.setPreferredSize(new java.awt.Dimension(600, 450));
 
-        javax.swing.GroupLayout contentLayout = new javax.swing.GroupLayout(content);
-        content.setLayout(contentLayout);
-        contentLayout.setHorizontalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
+        contentPane.setLayout(contentPaneLayout);
+        contentPaneLayout.setHorizontalGroup(
+            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        contentLayout.setVerticalGroup(
-            contentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contentPaneLayout.setVerticalGroup(
+            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        container.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 550, 430));
+        container.add(contentPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 550, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -315,18 +312,52 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void customInitForComponents() {
+    private void setupContentPanel() {
+        journeyForm = new JourneyForm();
+        dayTotalPanel = new DayTotal();
+        driverForm = new DriverForm();
+        contentPaneLayout = new GridBagLayout();
+        
+        contentPane.setLayout(contentPaneLayout);
+        GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
+        contentPaneLayoutConstraints.gridx = 0;
+        contentPaneLayoutConstraints.gridy = 0;
+        
+        contentPane.add(journeyForm, contentPaneLayoutConstraints);
+        contentPane.add(dayTotalPanel, contentPaneLayoutConstraints);
+        contentPane.add(driverForm, contentPaneLayoutConstraints);
+        
+        journeyForm.setVisible(false);
+        dayTotalPanel.setVisible(false);
+        driverForm.setVisible(false);
+        
+    }
+    private void closeWindowButtonTextAlign() {
         windowCloseButton.setHorizontalAlignment(JLabel.CENTER);
     }
+    
     private void windowCloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_windowCloseButtonMouseClicked
         System.exit(0);
     }//GEN-LAST:event_windowCloseButtonMouseClicked
 
+    private void setActiveColor(JPanel jPanel) {
+        jPanel.setBackground(new Color(85,65,111));
+    }
+    
+    private void setDefaultColor(JPanel jPanel) {
+        jPanel.setBackground(new Color(64,43,100));
+    }
+    
     private void addDriverLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addDriverLabelMousePressed
         setActiveColor(addDriverButton);
         setDefaultColor(newJourneyButton);
         setDefaultColor(editJourneyButton);
         setDefaultColor(totalOfTheDayButton);
+        
+        journeyForm.setVisible(false);
+        dayTotalPanel.setVisible(false);
+        driverForm.setVisible(true);
+        contentPane.repaint();
     }//GEN-LAST:event_addDriverLabelMousePressed
 
     private void totalOfTheDayLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalOfTheDayLabelMousePressed
@@ -334,6 +365,11 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(newJourneyButton);
         setDefaultColor(editJourneyButton);
         setDefaultColor(addDriverButton);
+        
+        journeyForm.setVisible(false);
+        dayTotalPanel.setVisible(true);
+        driverForm.setVisible(false);
+        contentPane.repaint();
     }//GEN-LAST:event_totalOfTheDayLabelMousePressed
 
     private void editJourneyLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editJourneyLabelMousePressed
@@ -341,6 +377,11 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(newJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
+        
+        journeyForm.setVisible(true);
+        dayTotalPanel.setVisible(false);
+        driverForm.setVisible(false);
+        contentPane.repaint();
     }//GEN-LAST:event_editJourneyLabelMousePressed
 
     private void newJourneyLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newJourneyLabelMousePressed
@@ -348,16 +389,23 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(editJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
+        
+        journeyForm.setVisible(true);
+        dayTotalPanel.setVisible(false);
+        driverForm.setVisible(false);
+        contentPane.repaint();
     }//GEN-LAST:event_newJourneyLabelMousePressed
 
     private void containerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseDragged
-        int coordinateX = evt.getXOnScreen();
+        int coordinateX = evt.getXOnScreen(); // mouse position relative to device screen
         int coordinateY = evt.getYOnScreen();
+//        System.out.println("X relative to screen: " + coordinateX + " X relative to window: " + mousePositionX);
+//        System.out.println("Y relative to screen: " + coordinateY + " Y relative to window: " + mousePositionY);
         this.setLocation(coordinateX - mousePositionX, coordinateY - mousePositionY);
     }//GEN-LAST:event_containerMouseDragged
 
     private void containerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMousePressed
-        mousePositionX = evt.getX();
+        mousePositionX = evt.getX(); // mouse position relative to this window
         mousePositionY = evt.getY();
     }//GEN-LAST:event_containerMousePressed
 
@@ -403,7 +451,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel appTitle;
     private javax.swing.JSeparator appTitleUnderline;
     private javax.swing.JPanel container;
-    private javax.swing.JPanel content;
+    private javax.swing.JPanel contentPane;
     private javax.swing.JPanel editJourneyButton;
     private javax.swing.JLabel editJourneyIcon;
     private javax.swing.JLabel editJourneyLabel;
