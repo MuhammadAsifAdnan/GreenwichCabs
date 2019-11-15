@@ -236,8 +236,8 @@ public class MainFrame extends javax.swing.JFrame {
         appTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         appTitle.setForeground(new java.awt.Color(255, 255, 255));
         appTitle.setText("Greenwich Cabs");
-        sidePane.add(appTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 40));
-        sidePane.add(appTitleUnderline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 210, 10));
+        sidePane.add(appTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 45));
+        sidePane.add(appTitleUnderline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, 210, 10));
 
         container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, -1));
 
