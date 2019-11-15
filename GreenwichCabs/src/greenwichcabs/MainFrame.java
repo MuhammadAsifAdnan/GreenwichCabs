@@ -90,11 +90,6 @@ public class MainFrame extends javax.swing.JFrame {
         sidePane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         newJourneyButton.setBackground(new java.awt.Color(64, 43, 100));
-        newJourneyButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                newJourneyButtonMousePressed(evt);
-            }
-        });
 
         newJourneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_commute_white_18dp.png"))); // NOI18N
 
@@ -131,11 +126,6 @@ public class MainFrame extends javax.swing.JFrame {
         sidePane.add(newJourneyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 250, 50));
 
         addDriverButton.setBackground(new java.awt.Color(64, 43, 100));
-        addDriverButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                addDriverButtonMousePressed(evt);
-            }
-        });
 
         addDriverIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_account_circle_white_18dp.png"))); // NOI18N
 
@@ -255,11 +245,6 @@ public class MainFrame extends javax.swing.JFrame {
         windowButtons.setMaximumSize(new java.awt.Dimension(50, 50));
         windowButtons.setMinimumSize(new java.awt.Dimension(25, 25));
         windowButtons.setPreferredSize(new java.awt.Dimension(50, 50));
-        windowButtons.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                windowButtonsMouseClicked(evt);
-            }
-        });
 
         windowCloseButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         windowCloseButton.setForeground(new java.awt.Color(122, 72, 221));
@@ -333,24 +318,9 @@ public class MainFrame extends javax.swing.JFrame {
     private void customInitForComponents() {
         windowCloseButton.setHorizontalAlignment(JLabel.CENTER);
     }
-    private void windowButtonsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_windowButtonsMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_windowButtonsMouseClicked
-
     private void windowCloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_windowCloseButtonMouseClicked
-
         System.exit(0);
     }//GEN-LAST:event_windowCloseButtonMouseClicked
-
-    private void newJourneyButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newJourneyButtonMousePressed
-
-
-    }//GEN-LAST:event_newJourneyButtonMousePressed
-
-    private void addDriverButtonMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addDriverButtonMousePressed
-
-    }//GEN-LAST:event_addDriverButtonMousePressed
 
     private void addDriverLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addDriverLabelMousePressed
         setActiveColor(addDriverButton);
