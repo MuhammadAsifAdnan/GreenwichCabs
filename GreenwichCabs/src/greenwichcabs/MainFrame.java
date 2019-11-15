@@ -273,11 +273,11 @@ public class MainFrame extends javax.swing.JFrame {
         windowButtonsLayout.setVerticalGroup(
             windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(windowButtonsLayout.createSequentialGroup()
-                .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
+                .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, 40));
+        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 40, 70));
 
         content.setBackground(new java.awt.Color(122, 72, 221));
         content.setMaximumSize(new java.awt.Dimension(600, 450));
@@ -295,7 +295,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        container.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 68, 551, 432));
+        container.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 550, 430));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
