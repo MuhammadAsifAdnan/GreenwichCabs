@@ -69,7 +69,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         newJourneyButton1.setBackground(new java.awt.Color(85, 65, 111));
 
-        newJourneyIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+        newJourneyIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_commute_white_18dp.png"))); // NOI18N
 
         newJourneyLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         newJourneyLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -101,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         addDriverButton.setBackground(new java.awt.Color(64, 43, 100));
 
-        addDriverIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+        addDriverIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_account_circle_white_18dp.png"))); // NOI18N
 
         addDriverLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         addDriverLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -124,7 +124,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addDriverButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(addDriverButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(addDriverIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(addDriverIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addDriverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -133,7 +133,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         editJourneyButton.setBackground(new java.awt.Color(64, 43, 100));
 
-        editJourneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+        editJourneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_edit_white_18dp.png"))); // NOI18N
 
         editJourneyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         editJourneyLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -156,7 +156,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editJourneyButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(editJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(editJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -165,7 +165,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         totalOfTheDayButton.setBackground(new java.awt.Color(64, 43, 100));
 
-        totalOfTheDayIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+        totalOfTheDayIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/outline_dashboard_white_18dp.png"))); // NOI18N
 
         totalOfTheDayLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalOfTheDayLabel.setForeground(new java.awt.Color(255, 255, 255));
@@ -188,7 +188,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalOfTheDayButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(totalOfTheDayButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(totalOfTheDayIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(totalOfTheDayIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(totalOfTheDayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -199,7 +199,7 @@ public class MainFrame extends javax.swing.JFrame {
         appTitle.setForeground(new java.awt.Color(255, 255, 255));
         appTitle.setText("Greenwich Cabs");
         sidePane.add(appTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 40));
-        sidePane.add(appTitleUnderline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, 210, 10));
+        sidePane.add(appTitleUnderline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 210, 10));
 
         container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 249, -1));
 
@@ -212,7 +212,8 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        windowCloseButton.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
+        windowCloseButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        windowCloseButton.setForeground(new java.awt.Color(122, 72, 221));
         windowCloseButton.setText("X");
         windowCloseButton.setToolTipText("close");
         windowCloseButton.setAlignmentX(0.5F);
