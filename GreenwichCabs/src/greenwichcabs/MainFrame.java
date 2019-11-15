@@ -156,7 +156,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(addDriverIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(addDriverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(addDriverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         addDriverButtonLayout.setVerticalGroup(
@@ -169,7 +169,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePane.add(addDriverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
+        sidePane.add(addDriverButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, 250, 50));
 
         editJourneyButton.setBackground(new java.awt.Color(64, 43, 100));
 
@@ -192,7 +192,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(editJourneyIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         editJourneyButtonLayout.setVerticalGroup(
@@ -205,7 +205,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePane.add(editJourneyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, -1));
+        sidePane.add(editJourneyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, 250, 50));
 
         totalOfTheDayButton.setBackground(new java.awt.Color(64, 43, 100));
 
@@ -228,7 +228,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(totalOfTheDayIcon)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(totalOfTheDayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addComponent(totalOfTheDayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                 .addContainerGap())
         );
         totalOfTheDayButtonLayout.setVerticalGroup(
@@ -241,7 +241,7 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        sidePane.add(totalOfTheDayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, -1));
+        sidePane.add(totalOfTheDayButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, 250, 50));
 
         appTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         appTitle.setForeground(new java.awt.Color(255, 255, 255));
@@ -249,7 +249,7 @@ public class MainFrame extends javax.swing.JFrame {
         sidePane.add(appTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 200, 40));
         sidePane.add(appTitleUnderline, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 65, 210, 10));
 
-        container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 249, -1));
+        container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, -1));
 
         windowButtons.setBackground(new java.awt.Color(255, 255, 255));
         windowButtons.setMaximumSize(new java.awt.Dimension(50, 50));
@@ -287,13 +287,12 @@ public class MainFrame extends javax.swing.JFrame {
         );
         windowButtonsLayout.setVerticalGroup(
             windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, windowButtonsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(windowButtonsLayout.createSequentialGroup()
                 .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
-        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, 50));
+        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 10, -1, 40));
 
         content.setBackground(new java.awt.Color(122, 72, 221));
         content.setMaximumSize(new java.awt.Dimension(600, 450));
