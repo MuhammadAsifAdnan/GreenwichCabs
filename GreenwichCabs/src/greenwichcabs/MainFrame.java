@@ -32,6 +32,18 @@ public class MainFrame extends javax.swing.JFrame {
 
         container = new javax.swing.JPanel();
         sidePane = new javax.swing.JPanel();
+        newJourneyButton1 = new javax.swing.JPanel();
+        newJourneyIcon1 = new javax.swing.JLabel();
+        newJourneyLabel1 = new javax.swing.JLabel();
+        editJourneyButton = new javax.swing.JPanel();
+        editJourneyIcon = new javax.swing.JLabel();
+        editJourneyLabel = new javax.swing.JLabel();
+        newJourneyButton2 = new javax.swing.JPanel();
+        newJourneyIcon2 = new javax.swing.JLabel();
+        newJourneyLabel2 = new javax.swing.JLabel();
+        newJourneyButton3 = new javax.swing.JPanel();
+        newJourneyIcon3 = new javax.swing.JLabel();
+        newJourneyLabel3 = new javax.swing.JLabel();
         windowButtons = new javax.swing.JPanel();
         windowCloseButton = new javax.swing.JLabel();
         content = new javax.swing.JPanel();
@@ -41,27 +53,147 @@ public class MainFrame extends javax.swing.JFrame {
         setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(800, 500));
         setResizable(false);
 
         container.setMaximumSize(new java.awt.Dimension(800, 500));
         container.setMinimumSize(new java.awt.Dimension(800, 500));
         container.setPreferredSize(new java.awt.Dimension(800, 500));
+        container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidePane.setBackground(new java.awt.Color(54, 33, 89));
         sidePane.setMaximumSize(new java.awt.Dimension(200, 500));
         sidePane.setPreferredSize(new java.awt.Dimension(200, 500));
+        sidePane.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout sidePaneLayout = new javax.swing.GroupLayout(sidePane);
-        sidePane.setLayout(sidePaneLayout);
-        sidePaneLayout.setHorizontalGroup(
-            sidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 249, Short.MAX_VALUE)
+        newJourneyButton1.setBackground(new java.awt.Color(85, 65, 111));
+
+        newJourneyIcon1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+
+        newJourneyLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newJourneyLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        newJourneyLabel1.setText("New Journey");
+        newJourneyLabel1.setToolTipText("Record new journey");
+
+        javax.swing.GroupLayout newJourneyButton1Layout = new javax.swing.GroupLayout(newJourneyButton1);
+        newJourneyButton1.setLayout(newJourneyButton1Layout);
+        newJourneyButton1Layout.setHorizontalGroup(
+            newJourneyButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newJourneyButton1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(newJourneyIcon1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newJourneyLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
-        sidePaneLayout.setVerticalGroup(
-            sidePaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        newJourneyButton1Layout.setVerticalGroup(
+            newJourneyButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newJourneyButton1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newJourneyButton1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(newJourneyIcon1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newJourneyLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(67, 67, 67))
         );
+
+        sidePane.add(newJourneyButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 140, 250, 50));
+
+        editJourneyButton.setBackground(new java.awt.Color(85, 65, 111));
+
+        editJourneyIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+
+        editJourneyLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        editJourneyLabel.setForeground(new java.awt.Color(255, 255, 255));
+        editJourneyLabel.setText("New Journey");
+        editJourneyLabel.setToolTipText("Record new journey");
+
+        javax.swing.GroupLayout editJourneyButtonLayout = new javax.swing.GroupLayout(editJourneyButton);
+        editJourneyButton.setLayout(editJourneyButtonLayout);
+        editJourneyButtonLayout.setHorizontalGroup(
+            editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(editJourneyButtonLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(editJourneyIcon)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        editJourneyButtonLayout.setVerticalGroup(
+            editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editJourneyButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(editJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        sidePane.add(editJourneyButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 290, -1, -1));
+
+        newJourneyButton2.setBackground(new java.awt.Color(85, 65, 111));
+
+        newJourneyIcon2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+
+        newJourneyLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newJourneyLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        newJourneyLabel2.setText("New Journey");
+        newJourneyLabel2.setToolTipText("Record new journey");
+
+        javax.swing.GroupLayout newJourneyButton2Layout = new javax.swing.GroupLayout(newJourneyButton2);
+        newJourneyButton2.setLayout(newJourneyButton2Layout);
+        newJourneyButton2Layout.setHorizontalGroup(
+            newJourneyButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newJourneyButton2Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(newJourneyIcon2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newJourneyLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        newJourneyButton2Layout.setVerticalGroup(
+            newJourneyButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newJourneyButton2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newJourneyButton2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(newJourneyIcon2, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(newJourneyLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        sidePane.add(newJourneyButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 190, -1, -1));
+
+        newJourneyButton3.setBackground(new java.awt.Color(85, 65, 111));
+
+        newJourneyIcon3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/commute-24px.png"))); // NOI18N
+
+        newJourneyLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        newJourneyLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        newJourneyLabel3.setText("New Journey");
+        newJourneyLabel3.setToolTipText("Record new journey");
+
+        javax.swing.GroupLayout newJourneyButton3Layout = new javax.swing.GroupLayout(newJourneyButton3);
+        newJourneyButton3.setLayout(newJourneyButton3Layout);
+        newJourneyButton3Layout.setHorizontalGroup(
+            newJourneyButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(newJourneyButton3Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(newJourneyIcon3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(newJourneyLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        newJourneyButton3Layout.setVerticalGroup(
+            newJourneyButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newJourneyButton3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(newJourneyButton3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(newJourneyIcon3, javax.swing.GroupLayout.DEFAULT_SIZE, 28, Short.MAX_VALUE)
+                    .addComponent(newJourneyLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        sidePane.add(newJourneyButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 240, -1, -1));
+
+        container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 249, -1));
 
         windowButtons.setMaximumSize(new java.awt.Dimension(50, 50));
         windowButtons.setMinimumSize(new java.awt.Dimension(25, 25));
@@ -103,6 +235,8 @@ public class MainFrame extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 0, -1, -1));
+
         content.setBackground(new java.awt.Color(122, 72, 221));
         content.setMaximumSize(new java.awt.Dimension(600, 450));
         content.setMinimumSize(new java.awt.Dimension(600, 450));
@@ -119,27 +253,7 @@ public class MainFrame extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        javax.swing.GroupLayout containerLayout = new javax.swing.GroupLayout(container);
-        container.setLayout(containerLayout);
-        containerLayout.setHorizontalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addComponent(sidePane, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addGroup(containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(containerLayout.createSequentialGroup()
-                        .addGap(0, 501, Short.MAX_VALUE)
-                        .addComponent(windowButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-        );
-        containerLayout.setVerticalGroup(
-            containerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(containerLayout.createSequentialGroup()
-                .addComponent(windowButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(content, javax.swing.GroupLayout.PREFERRED_SIZE, 432, Short.MAX_VALUE))
-            .addComponent(sidePane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        container.add(content, new org.netbeans.lib.awtextra.AbsoluteConstraints(249, 68, 551, 432));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,6 +324,18 @@ public class MainFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel container;
     private javax.swing.JPanel content;
+    private javax.swing.JPanel editJourneyButton;
+    private javax.swing.JLabel editJourneyIcon;
+    private javax.swing.JLabel editJourneyLabel;
+    private javax.swing.JPanel newJourneyButton1;
+    private javax.swing.JPanel newJourneyButton2;
+    private javax.swing.JPanel newJourneyButton3;
+    private javax.swing.JLabel newJourneyIcon1;
+    private javax.swing.JLabel newJourneyIcon2;
+    private javax.swing.JLabel newJourneyIcon3;
+    private javax.swing.JLabel newJourneyLabel1;
+    private javax.swing.JLabel newJourneyLabel2;
+    private javax.swing.JLabel newJourneyLabel3;
     private javax.swing.JPanel sidePane;
     private javax.swing.JPanel windowButtons;
     private javax.swing.JLabel windowCloseButton;
