@@ -27,33 +27,111 @@ public class DriverForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        labelForDriverName = new javax.swing.JLabel();
+        driverName = new javax.swing.JFormattedTextField();
+        labelForDriverSSN = new javax.swing.JLabel();
+        driverSSN = new javax.swing.JTextField();
+        saveNewDriverFormButton = new javax.swing.JButton();
+        cancelAddDriverFormButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(122, 72, 221));
         setPreferredSize(new java.awt.Dimension(550, 430));
 
-        jLabel1.setText("Driver");
+        labelForDriverName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelForDriverName.setForeground(new java.awt.Color(255, 255, 255));
+        labelForDriverName.setLabelFor(driverName);
+        labelForDriverName.setText("Name");
+
+        driverName.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+        driverName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        driverName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                driverNameActionPerformed(evt);
+            }
+        });
+
+        labelForDriverSSN.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelForDriverSSN.setForeground(new java.awt.Color(255, 255, 255));
+        labelForDriverSSN.setLabelFor(driverSSN);
+        labelForDriverSSN.setText("SSN");
+
+        driverSSN.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        driverSSN.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+
+        saveNewDriverFormButton.setBackground(new java.awt.Color(64, 43, 100));
+        saveNewDriverFormButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        saveNewDriverFormButton.setForeground(new java.awt.Color(255, 255, 255));
+        saveNewDriverFormButton.setText("Save");
+        saveNewDriverFormButton.setBorder(null);
+        saveNewDriverFormButton.setBorderPainted(false);
+
+        cancelAddDriverFormButton.setBackground(new java.awt.Color(64, 43, 100));
+        cancelAddDriverFormButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        cancelAddDriverFormButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelAddDriverFormButton.setText("Cancel");
+        cancelAddDriverFormButton.setBorder(null);
+        cancelAddDriverFormButton.setBorderPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel1)
-                .addContainerGap(323, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(127, 127, 127)
+                        .addComponent(cancelAddDriverFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(80, 80, 80)
+                        .addComponent(saveNewDriverFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelForDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(driverName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelForDriverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(driverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelForDriverName, labelForDriverSSN});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1)
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(156, 156, 156)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelForDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driverName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelForDriverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancelAddDriverFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(saveNewDriverFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelForDriverName, labelForDriverSSN});
+
     }// </editor-fold>//GEN-END:initComponents
+
+    private void driverNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_driverNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton cancelAddDriverFormButton;
+    private javax.swing.JFormattedTextField driverName;
+    private javax.swing.JTextField driverSSN;
+    private javax.swing.JLabel labelForDriverName;
+    private javax.swing.JLabel labelForDriverSSN;
+    private javax.swing.JButton saveNewDriverFormButton;
     // End of variables declaration//GEN-END:variables
 }

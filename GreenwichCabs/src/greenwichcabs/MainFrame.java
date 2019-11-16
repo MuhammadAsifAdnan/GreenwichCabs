@@ -14,6 +14,7 @@ import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
  */
 public class MainFrame extends javax.swing.JFrame {
     
+    /*** Variable declaration of custom panels to be displayed in ContentPane ****/
     JourneyForm journeyForm;
     DayTotal dayTotalPanel;
     DriverForm driverForm;
@@ -23,9 +24,8 @@ public class MainFrame extends javax.swing.JFrame {
      * Creates new form MainFrame
      */
     public MainFrame() {
-        initComponents();
-        closeWindowButtonTextAlign();
-        setupContentPanel();
+        initComponents(); // Generated code. Initializes the panels and components added via GUI design tab
+        setupContentPanelComponents(); // Initializes custom panels (New journey, edit journey, Day total, driver panel forms
     }
     
     /**
@@ -56,11 +56,11 @@ public class MainFrame extends javax.swing.JFrame {
         windowButtons = new javax.swing.JPanel();
         windowCloseButton = new javax.swing.JLabel();
         contentPane = new javax.swing.JPanel();
+        contentPaneTitle = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
-        setMaximumSize(new java.awt.Dimension(800, 500));
         setMinimumSize(new java.awt.Dimension(800, 500));
         setUndecorated(true);
         setResizable(false);
@@ -113,10 +113,10 @@ public class MainFrame extends javax.swing.JFrame {
         newJourneyButtonLayout.setVerticalGroup(
             newJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, newJourneyButtonLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(newJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(newJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(newJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(newJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(newJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(67, 67, 67))
         );
 
@@ -149,7 +149,7 @@ public class MainFrame extends javax.swing.JFrame {
         addDriverButtonLayout.setVerticalGroup(
             addDriverButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addDriverButtonLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(addDriverButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(addDriverIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(addDriverLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -185,7 +185,7 @@ public class MainFrame extends javax.swing.JFrame {
         editJourneyButtonLayout.setVerticalGroup(
             editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, editJourneyButtonLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(editJourneyButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(editJourneyIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(editJourneyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -221,7 +221,7 @@ public class MainFrame extends javax.swing.JFrame {
         totalOfTheDayButtonLayout.setVerticalGroup(
             totalOfTheDayButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, totalOfTheDayButtonLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(6, 6, 6)
                 .addGroup(totalOfTheDayButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(totalOfTheDayIcon, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(totalOfTheDayLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -245,10 +245,11 @@ public class MainFrame extends javax.swing.JFrame {
 
         windowCloseButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         windowCloseButton.setForeground(new java.awt.Color(122, 72, 221));
-        windowCloseButton.setText("X");
+        windowCloseButton.setText(" X");
         windowCloseButton.setToolTipText("close");
         windowCloseButton.setAlignmentX(0.5F);
         windowCloseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        windowCloseButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         windowCloseButton.setMaximumSize(new java.awt.Dimension(30, 30));
         windowCloseButton.setMinimumSize(new java.awt.Dimension(30, 30));
         windowCloseButton.setPreferredSize(new java.awt.Dimension(30, 30));
@@ -264,7 +265,7 @@ public class MainFrame extends javax.swing.JFrame {
             windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, windowButtonsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(windowCloseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(windowCloseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         windowButtonsLayout.setVerticalGroup(
@@ -277,6 +278,7 @@ public class MainFrame extends javax.swing.JFrame {
         container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 40, 70));
 
         contentPane.setBackground(new java.awt.Color(122, 72, 221));
+        contentPane.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         contentPane.setMaximumSize(new java.awt.Dimension(600, 450));
         contentPane.setMinimumSize(new java.awt.Dimension(600, 450));
         contentPane.setPreferredSize(new java.awt.Dimension(600, 450));
@@ -293,6 +295,10 @@ public class MainFrame extends javax.swing.JFrame {
         );
 
         container.add(contentPane, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 550, 430));
+
+        contentPaneTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        contentPaneTitle.setForeground(new java.awt.Color(122, 72, 221));
+        container.add(contentPaneTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 370, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -312,28 +318,29 @@ public class MainFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void setupContentPanel() {
+    private void setupContentPanelComponents() {
+        // creating custom panel objects
         journeyForm = new JourneyForm();
         dayTotalPanel = new DayTotal();
         driverForm = new DriverForm();
         contentPaneLayout = new GridBagLayout();
         
+        // Setting up layout for contentPane.
         contentPane.setLayout(contentPaneLayout);
         GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
         contentPaneLayoutConstraints.gridx = 0;
         contentPaneLayoutConstraints.gridy = 0;
         
+        // adding custom panels to contentPane
         contentPane.add(journeyForm, contentPaneLayoutConstraints);
         contentPane.add(dayTotalPanel, contentPaneLayoutConstraints);
         contentPane.add(driverForm, contentPaneLayoutConstraints);
         
+        // setting all the custom panels visibility to false. we will make them visible when user clicks respective button
+        // on the sidePane
         journeyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
-        
-    }
-    private void closeWindowButtonTextAlign() {
-        windowCloseButton.setHorizontalAlignment(JLabel.CENTER);
     }
     
     private void windowCloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_windowCloseButtonMouseClicked
@@ -354,9 +361,10 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(editJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         
+        contentPaneTitle.setText("Add new Driver");
+        driverForm.setVisible(true);
         journeyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
-        driverForm.setVisible(true);
         contentPane.repaint();
     }//GEN-LAST:event_addDriverLabelMousePressed
 
@@ -366,8 +374,9 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(editJourneyButton);
         setDefaultColor(addDriverButton);
         
-        journeyForm.setVisible(false);
+        contentPaneTitle.setText("Total of The Day");
         dayTotalPanel.setVisible(true);
+        journeyForm.setVisible(false);
         driverForm.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_totalOfTheDayLabelMousePressed
@@ -378,6 +387,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
+        contentPaneTitle.setText("Edit existing journey");
         journeyForm.setVisible(true);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
@@ -390,6 +400,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
+        contentPaneTitle.setText("Record new journey");
         journeyForm.setVisible(true);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
@@ -452,6 +463,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JSeparator appTitleUnderline;
     private javax.swing.JPanel container;
     private javax.swing.JPanel contentPane;
+    private javax.swing.JLabel contentPaneTitle;
     private javax.swing.JPanel editJourneyButton;
     private javax.swing.JLabel editJourneyIcon;
     private javax.swing.JLabel editJourneyLabel;
