@@ -53,8 +53,6 @@ public class MainFrame extends javax.swing.JFrame {
         totalOfTheDayLabel = new javax.swing.JLabel();
         appTitle = new javax.swing.JLabel();
         appTitleUnderline = new javax.swing.JSeparator();
-        windowButtons = new javax.swing.JPanel();
-        windowCloseButton = new javax.swing.JLabel();
         contentPane = new javax.swing.JPanel();
         contentPaneTitle = new javax.swing.JLabel();
 
@@ -62,23 +60,12 @@ public class MainFrame extends javax.swing.JFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocationByPlatform(true);
         setMinimumSize(new java.awt.Dimension(800, 500));
-        setUndecorated(true);
         setResizable(false);
 
         container.setBackground(new java.awt.Color(255, 255, 255));
         container.setMaximumSize(new java.awt.Dimension(800, 500));
         container.setMinimumSize(new java.awt.Dimension(800, 500));
         container.setPreferredSize(new java.awt.Dimension(800, 500));
-        container.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                containerMouseDragged(evt);
-            }
-        });
-        container.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                containerMousePressed(evt);
-            }
-        });
         container.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         sidePane.setBackground(new java.awt.Color(54, 33, 89));
@@ -238,45 +225,6 @@ public class MainFrame extends javax.swing.JFrame {
 
         container.add(sidePane, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 250, -1));
 
-        windowButtons.setBackground(new java.awt.Color(255, 255, 255));
-        windowButtons.setMaximumSize(new java.awt.Dimension(50, 50));
-        windowButtons.setMinimumSize(new java.awt.Dimension(25, 25));
-        windowButtons.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        windowCloseButton.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
-        windowCloseButton.setForeground(new java.awt.Color(122, 72, 221));
-        windowCloseButton.setText(" X");
-        windowCloseButton.setToolTipText("close");
-        windowCloseButton.setAlignmentX(0.5F);
-        windowCloseButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        windowCloseButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        windowCloseButton.setMaximumSize(new java.awt.Dimension(30, 30));
-        windowCloseButton.setMinimumSize(new java.awt.Dimension(30, 30));
-        windowCloseButton.setPreferredSize(new java.awt.Dimension(30, 30));
-        windowCloseButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                windowCloseButtonMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout windowButtonsLayout = new javax.swing.GroupLayout(windowButtons);
-        windowButtons.setLayout(windowButtonsLayout);
-        windowButtonsLayout.setHorizontalGroup(
-            windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, windowButtonsLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(windowCloseButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        windowButtonsLayout.setVerticalGroup(
-            windowButtonsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(windowButtonsLayout.createSequentialGroup()
-                .addComponent(windowCloseButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-
-        container.add(windowButtons, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 0, 40, 70));
-
         contentPane.setBackground(new java.awt.Color(122, 72, 221));
         contentPane.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         contentPane.setMaximumSize(new java.awt.Dimension(600, 450));
@@ -343,10 +291,6 @@ public class MainFrame extends javax.swing.JFrame {
         driverForm.setVisible(false);
     }
     
-    private void windowCloseButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_windowCloseButtonMouseClicked
-        System.exit(0);
-    }//GEN-LAST:event_windowCloseButtonMouseClicked
-
     private void setActiveColor(JPanel jPanel) {
         jPanel.setBackground(new Color(85,65,111));
     }
@@ -407,19 +351,6 @@ public class MainFrame extends javax.swing.JFrame {
         contentPane.repaint();
     }//GEN-LAST:event_newJourneyLabelMousePressed
 
-    private void containerMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMouseDragged
-        int coordinateX = evt.getXOnScreen(); // mouse position relative to device screen
-        int coordinateY = evt.getYOnScreen();
-//        System.out.println("X relative to screen: " + coordinateX + " X relative to window: " + mousePositionX);
-//        System.out.println("Y relative to screen: " + coordinateY + " Y relative to window: " + mousePositionY);
-        this.setLocation(coordinateX - mousePositionX, coordinateY - mousePositionY);
-    }//GEN-LAST:event_containerMouseDragged
-
-    private void containerMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_containerMousePressed
-        mousePositionX = evt.getX(); // mouse position relative to this window
-        mousePositionY = evt.getY();
-    }//GEN-LAST:event_containerMousePressed
-
     /**
      * @param args the command line arguments
      */
@@ -474,9 +405,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel totalOfTheDayButton;
     private javax.swing.JLabel totalOfTheDayIcon;
     private javax.swing.JLabel totalOfTheDayLabel;
-    private javax.swing.JPanel windowButtons;
-    private javax.swing.JLabel windowCloseButton;
     // End of variables declaration//GEN-END:variables
-    int mousePositionX;
-    int mousePositionY;
+
 }
