@@ -54,17 +54,17 @@ public class JourneyForm extends javax.swing.JPanel {
         labelForPickupLocation.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForPickupLocation.setForeground(new java.awt.Color(255, 255, 255));
         labelForPickupLocation.setLabelFor(labelForPickupLocation);
-        labelForPickupLocation.setText("Pickup location");
+        labelForPickupLocation.setText("Pickup location*");
 
         labelForSelectDriver.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForSelectDriver.setForeground(new java.awt.Color(255, 255, 255));
         labelForSelectDriver.setLabelFor(selectDriverComboBox);
-        labelForSelectDriver.setText("Driver");
+        labelForSelectDriver.setText("Driver*");
 
         labelForDestination.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForDestination.setForeground(new java.awt.Color(255, 255, 255));
         labelForDestination.setLabelFor(labelForDestination);
-        labelForDestination.setText("Destination");
+        labelForDestination.setText("Destination*");
 
         labelForPassengerName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForPassengerName.setForeground(new java.awt.Color(255, 255, 255));
@@ -89,7 +89,7 @@ public class JourneyForm extends javax.swing.JPanel {
         labelForTime.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForTime.setForeground(new java.awt.Color(255, 255, 255));
         labelForTime.setLabelFor(labelForTime);
-        labelForTime.setText("Time");
+        labelForTime.setText("Time*");
 
         selectDriverComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectDriverComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4", "Item 1", "Item 2", "Item 3", "Item 4" }));

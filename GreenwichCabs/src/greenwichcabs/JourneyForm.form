@@ -140,7 +140,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="labelForPickupLocation"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Pickup location"/>
+        <Property name="text" type="java.lang.String" value="Pickup location*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelForSelectDriver">
@@ -154,7 +154,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="selectDriverComboBox"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Driver"/>
+        <Property name="text" type="java.lang.String" value="Driver*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelForDestination">
@@ -168,7 +168,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="labelForDestination"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Destination"/>
+        <Property name="text" type="java.lang.String" value="Destination*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelForPassengerName">
@@ -238,7 +238,7 @@
         <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
           <ComponentRef name="labelForTime"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Time"/>
+        <Property name="text" type="java.lang.String" value="Time*"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="selectDriverComboBox">
