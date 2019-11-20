@@ -14,10 +14,12 @@ import java.util.Objects;
 public class Driver {
     private int Id;
     private String fullName;
+    private String SSN;
 
-    public Driver(int Id, String fullName) {
+    public Driver(int Id, String fullName, String SSN) {
         this.Id = Id;
         this.fullName = fullName;
+        this.SSN = SSN;
     }
 
     public int getId() {
@@ -35,32 +37,11 @@ public class Driver {
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        return hash;
+    public String getSSN() {
+        return SSN;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Driver other = (Driver) obj;
-        if (this.Id != other.Id) {
-            return false;
-        }
-        if (!Objects.equals(this.fullName, other.fullName)) {
-            return false;
-        }
-        return true;
+    public void setSSN(String SSN) {
+        this.SSN = SSN;
     }
-    
 }

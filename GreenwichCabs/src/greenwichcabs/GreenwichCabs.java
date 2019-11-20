@@ -7,6 +7,7 @@ package greenwichcabs;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.*;
+import java.sql.*;
 
 /**
  *
@@ -27,21 +28,44 @@ public class GreenwichCabs {
         mainFrame.setVisible(true);
         
         createDriverList();
+        databaseConnection();
     }
     
     private static void createDriverList() {
         List<Driver> drivers = new ArrayList<Driver>();
-        drivers.add(new Driver(1, "John Doe"));
-        drivers.add(new Driver(2, "Jack Sparrow"));
-        drivers.add(new Driver(3, "Hans Down"));
-        drivers.add(new Driver(4, "Alan Fresco"));
-        drivers.add(new Driver(5, "Malcom Function"));
-        drivers.add(new Driver(6, "Sue Shei"));
-        drivers.add(new Driver(7, "Richard Tea"));
-        drivers.add(new Driver(8, "Theodore Handle"));
-        drivers.add(new Driver(9, "Elenor Fant"));
-        drivers.add(new Driver(10, "Archibald Northbottom"));
+        drivers.add(new Driver(1, "John Doe", "1234-4321-5678-8765"));
+        drivers.add(new Driver(2, "Jack Sparrow", "1234-4321-5678-8765"));
+        drivers.add(new Driver(3, "Hans Down", "1234-4321-5678-8765"));
+        drivers.add(new Driver(4, "Alan Fresco", "1234-4321-5678-8765"));
+        drivers.add(new Driver(5, "Malcom Function", "1234-4321-5678-8765"));
+        drivers.add(new Driver(6, "Sue Shei", "1234-4321-5678-8765"));
+        drivers.add(new Driver(7, "Richard Tea", "1234-4321-5678-8765"));
+        drivers.add(new Driver(8, "Theodore Handle", "1234-4321-5678-8765"));
+        drivers.add(new Driver(9, "Elenor Fant", "1234-4321-5678-8765"));
+        drivers.add(new Driver(10, "Archibald Northbottom", "1234-4321-5678-8765"));
         
+        
+    }
+    
+    private static void databaseConnection() {
+        Connection conn = null; // A connection object is used to provide access to a database
+        try{
+            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/greenwichcabs", "asif", "Wonder4U");
+            // Statement objects executes a SQL query
+            // createStatement returns a Statement object
+            Statement sqlStatement = conn.createStatement();
+            String selectStuff = "Select * from Drivers";
+            ResultSet rows = sqlStatement.executeQuery(selectStuff);
+            
+            while(rows.next()){
+                System.out.println(rows.getString("ID"));
+                System.out.println(rows.getString("NAME"));
+                System.out.println(rows.getString("ssn"));
+            }
+            
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
         
     }
     
