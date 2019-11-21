@@ -273,45 +273,31 @@ public class JourneyForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please provide all the required fields!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        String journeyTime = journeyTimeTextField.getText();
+        String journeyStartTime = journeyTimeTextField.getText();
         String pickupLocation = pickupLocationTextField.getText();
         String destination = destinationTextField.getText();
         String passengerName = passengerNameTextField.getText();
-        Double fare = Double.parseDouble(fareTextField.getText());
+        Double fare = 0.0;
+        if(!fareTextField.getText().isEmpty()) {
+            fare = Double.parseDouble(fareTextField.getText());
+        }
         String account = accountTextField.getText();
         String telephone = telephoneTextField.getText();
                 
         DatabaseManager dbManager = new DatabaseManager();
         try {
             Connection conn = dbManager.getConnection();
-//            String sqlQuery = "INSERT into JOURNEYS VALUES("
-//                    + driverID + ","
-//                    + journeyTime + ","
-//                    + "'pickupLocation'" + ","
-//                    + "'destination'" + ","
-//                    + "'passengerName'" + ","
-//                    + fare + ","
-//                    + "'account'" + ","
-//                    + "'telephone'"
-//                    + ")";
-            
-//            String q1 = "insert into JOURNEYS values('" +id+ "', '" +pwd+  
-//                                  "', '" +fullname+ "', '" +email+ "', '" +email+ "', "
-//                    + "'" +email+ "', '" +email+ "', '" +email+ "', '" +email+ "')"; 
-
-            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO JOURNEYS (DRIVERID,JOURNEYTIME,PICKUPLOCATION,DESTINATION,PASSENGERNAME,FARE,ACCOUNT,TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO JOURNEYS (DRIVERID,JOURNEYSTARTTIME,PICKUPLOCATION,DESTINATION,PASSENGERNAME,FARE,ACCOUNT,TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
             pstmt.setInt(1, driverID);
-            pstmt.setString(2, journeyTime);
+            pstmt.setString(2, journeyStartTime);
             pstmt.setString(3, pickupLocation);
             pstmt.setString(4, destination);
             pstmt.setString(5, passengerName);
             pstmt.setDouble(6, fare);
             pstmt.setString(7, account);
             pstmt.setString(8, telephone);
-//            System.out.println(sqlQuery);
 
             int i = pstmt.executeUpdate();
-//                    dbManager.executeUpdate(conn, sqlQuery);
             // executeUpdate method executes insert, update, delete operation. if the return value is 0, the operation
             // failed. if greater than 0, it succeded
             if(i>0){

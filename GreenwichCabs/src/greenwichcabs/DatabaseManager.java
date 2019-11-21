@@ -15,9 +15,9 @@ public class DatabaseManager {
     private Connection conn = null; // A connection object is used to provide access to a database
     private ResultSet rows = null;
     
-    private String connectionString = "jdbc:derby://localhost:1527/greenwichcabs";
-    private String userName = "asif";
-    private String password = "Wonder4U";
+    private String connectionString = "jdbc:derby://localhost:1527/greenwichcabsDB";
+    private String userName = "anika";
+    private String password = "asif";
     
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(connectionString, userName, password);
