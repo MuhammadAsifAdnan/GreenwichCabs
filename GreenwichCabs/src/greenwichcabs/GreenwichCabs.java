@@ -27,46 +27,19 @@ public class GreenwichCabs {
         // terminated. As we are using custom window close button, this actually wont do anything.
         mainFrame.setVisible(true);
         
-        createDriverList();
-        databaseConnection();
-    }
-    
-    private static void createDriverList() {
-        List<Driver> drivers = new ArrayList<Driver>();
-        drivers.add(new Driver(1, "John Doe", "1234-4321-5678-8765"));
-        drivers.add(new Driver(2, "Jack Sparrow", "1234-4321-5678-8765"));
-        drivers.add(new Driver(3, "Hans Down", "1234-4321-5678-8765"));
-        drivers.add(new Driver(4, "Alan Fresco", "1234-4321-5678-8765"));
-        drivers.add(new Driver(5, "Malcom Function", "1234-4321-5678-8765"));
-        drivers.add(new Driver(6, "Sue Shei", "1234-4321-5678-8765"));
-        drivers.add(new Driver(7, "Richard Tea", "1234-4321-5678-8765"));
-        drivers.add(new Driver(8, "Theodore Handle", "1234-4321-5678-8765"));
-        drivers.add(new Driver(9, "Elenor Fant", "1234-4321-5678-8765"));
-        drivers.add(new Driver(10, "Archibald Northbottom", "1234-4321-5678-8765"));
         
+//        DatabaseManager dbManager = new DatabaseManager();
+//        try{
+//            Connection conn = dbManager.getConnection();
+//            ResultSet rows = dbManager.executeQuery(conn,"Select * from Drivers");
+//            while(rows.next()){
+//                System.out.println(rows.getString("firstname"));
+//            }
+//            conn.close();
+//        }catch(SQLException e){
+//            JOptionPane.showMessageDialog(mainFrame, "Error executing database query!", "Error", JOptionPane.ERROR_MESSAGE);  
+//            e.printStackTrace();
+//        }
         
     }
-    
-    private static void databaseConnection() {
-        Connection conn = null; // A connection object is used to provide access to a database
-        try{
-            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/greenwichcabs", "asif", "Wonder4U");
-            // Statement objects executes a SQL query
-            // createStatement returns a Statement object
-            Statement sqlStatement = conn.createStatement();
-            String selectStuff = "Select * from Drivers";
-            ResultSet rows = sqlStatement.executeQuery(selectStuff);
-            
-            while(rows.next()){
-                System.out.println(rows.getString("ID"));
-                System.out.println(rows.getString("NAME"));
-                System.out.println(rows.getString("ssn"));
-            }
-            
-        }catch(SQLException e){
-            e.printStackTrace();
-        }
-        
-    }
-    
 }

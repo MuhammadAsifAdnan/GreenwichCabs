@@ -13,15 +13,17 @@ import java.util.Objects;
  */
 public class Driver {
     private int Id;
-    private String fullName;
+    private String FirstName;
+    private String LastName;
     private String SSN;
 
-    public Driver(int Id, String fullName, String SSN) {
-        this.Id = Id;
-        this.fullName = fullName;
-        this.SSN = SSN;
+    public Driver(int Id, String FirstName, String LastName, String SSN) {
+    this.Id = Id;
+    this.FirstName = FirstName;
+    this.LastName = LastName;
+    this.SSN = SSN;
     }
-
+        
     public int getId() {
         return Id;
     }
@@ -30,18 +32,32 @@ public class Driver {
         this.Id = Id;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFirstName() {
+        return FirstName;
     }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    public void setFirstName(String FirstName) {
+        this.FirstName = FirstName;
     }
+
+    public String getLastName() {
+        return LastName;
+    }
+
+    public void setLastName(String LastName) {
+        this.LastName = LastName;
+    }
+
     public String getSSN() {
         return SSN;
     }
 
     public void setSSN(String SSN) {
         this.SSN = SSN;
+    }
+
+    @Override
+    public String toString() {
+        return Id + " - " + FirstName + " " + LastName;
     }
 }

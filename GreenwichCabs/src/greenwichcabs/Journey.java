@@ -28,6 +28,17 @@ public class Journey {
         this.Destination = Destination;
     }
 
+    public Journey(Driver driver, Date timeOfJourney, String pickupLocation, String Destination, String passengerName, Double fare, String account, String telephone) {
+        this.driver = driver;
+        this.timeOfJourney = timeOfJourney;
+        this.pickupLocation = pickupLocation;
+        this.Destination = Destination;
+        this.passengerName = passengerName;
+        this.fare = fare;
+        this.account = account;
+        this.telephone = telephone;
+    }
+
     public Driver getDriver() {
         return driver;
     }
