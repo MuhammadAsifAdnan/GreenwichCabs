@@ -26,20 +26,5 @@ public class GreenwichCabs {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // This makes sure when closing the window the app is
         // terminated. As we are using custom window close button, this actually wont do anything.
         mainFrame.setVisible(true);
-        
-        
-//        DatabaseManager dbManager = new DatabaseManager();
-//        try{
-//            Connection conn = dbManager.getConnection();
-//            ResultSet rows = dbManager.executeQuery(conn,"Select * from Drivers");
-//            while(rows.next()){
-//                System.out.println(rows.getString("firstname"));
-//            }
-//            conn.close();
-//        }catch(SQLException e){
-//            JOptionPane.showMessageDialog(mainFrame, "Error executing database query!", "Error", JOptionPane.ERROR_MESSAGE);  
-//            e.printStackTrace();
-//        }
-        
     }
 }

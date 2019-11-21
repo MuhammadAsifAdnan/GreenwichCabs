@@ -12,8 +12,8 @@ import java.util.Date;
  * @author aa
  */
 public class Journey {
-    private Driver driver;
-    private Date timeOfJourney;
+    private int driverId;
+    private String timeOfJourney;
     private String pickupLocation;
     private String Destination;
     private String passengerName;
@@ -21,15 +21,8 @@ public class Journey {
     private String account;
     private String telephone;
 
-    public Journey(Driver driver, Date timeOfJourney, String pickupLocation, String Destination) {
-        this.driver = driver;
-        this.timeOfJourney = timeOfJourney;
-        this.pickupLocation = pickupLocation;
-        this.Destination = Destination;
-    }
-
-    public Journey(Driver driver, Date timeOfJourney, String pickupLocation, String Destination, String passengerName, Double fare, String account, String telephone) {
-        this.driver = driver;
+    public Journey(int driverId, String timeOfJourney, String pickupLocation, String Destination, String passengerName, Double fare, String account, String telephone) {
+        this.driverId = driverId;
         this.timeOfJourney = timeOfJourney;
         this.pickupLocation = pickupLocation;
         this.Destination = Destination;
@@ -39,19 +32,19 @@ public class Journey {
         this.telephone = telephone;
     }
 
-    public Driver getDriver() {
-        return driver;
+    public int getDriverId() {
+        return driverId;
     }
 
-    public void setDriver(Driver driver) {
-        this.driver = driver;
+    public void setDriverId(int driverId) {
+        this.driverId = driverId;
     }
 
-    public Date getTimeOfJourney() {
+    public String getTimeOfJourney() {
         return timeOfJourney;
     }
 
-    public void setTimeOfJourney(Date timeOfJourney) {
+    public void setTimeOfJourney(String timeOfJourney) {
         this.timeOfJourney = timeOfJourney;
     }
 
@@ -102,4 +95,6 @@ public class Journey {
     public void setTelephone(String telephone) {
         this.telephone = telephone;
     }
+
+   
 }

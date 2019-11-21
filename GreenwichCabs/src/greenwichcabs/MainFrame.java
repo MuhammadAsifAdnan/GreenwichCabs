@@ -6,6 +6,10 @@
 package greenwichcabs;
 
 import java.awt.*; // color, layout etc
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 
 /**
@@ -15,10 +19,15 @@ import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 public class MainFrame extends javax.swing.JFrame {
     
     /*** Variable declaration of custom panels to be displayed in ContentPane ****/
-    JourneyForm journeyForm;
+    JourneyForm createJourneyForm;
+    JourneyForm editJourneyForm;
     DayTotal dayTotalPanel;
     DriverForm driverForm;
     GridBagLayout contentPaneLayout;
+    
+    ArrayList<Journey> previousJourneys;
+    
+    GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
 
     /**
      * Creates new form MainFrame
@@ -267,26 +276,26 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void setupContentPanelComponents() {
+        contentPaneLayoutConstraints.gridx = 0;
+        contentPaneLayoutConstraints.gridy = 0;
         // creating custom panel objects
-        journeyForm = new JourneyForm();
+        createJourneyForm = new JourneyForm();
         dayTotalPanel = new DayTotal();
         driverForm = new DriverForm();
         contentPaneLayout = new GridBagLayout();
         
         // Setting up layout for contentPane.
         contentPane.setLayout(contentPaneLayout);
-        GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
-        contentPaneLayoutConstraints.gridx = 0;
-        contentPaneLayoutConstraints.gridy = 0;
+        
         
         // adding custom panels to contentPane
-        contentPane.add(journeyForm, contentPaneLayoutConstraints);
+        contentPane.add(createJourneyForm, contentPaneLayoutConstraints);
         contentPane.add(dayTotalPanel, contentPaneLayoutConstraints);
         contentPane.add(driverForm, contentPaneLayoutConstraints);
         
         // setting all the custom panels visibility to false. we will make them visible when user clicks respective button
         // on the sidePane
-        journeyForm.setVisible(false);
+        createJourneyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
     }
@@ -307,7 +316,7 @@ public class MainFrame extends javax.swing.JFrame {
         
         contentPaneTitle.setText("Add new Driver");
         driverForm.setVisible(true);
-        journeyForm.setVisible(false);
+        createJourneyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_addDriverLabelMousePressed
@@ -320,7 +329,8 @@ public class MainFrame extends javax.swing.JFrame {
         
         contentPaneTitle.setText("Total of The Day");
         dayTotalPanel.setVisible(true);
-        journeyForm.setVisible(false);
+        createJourneyForm.setVisible(false);
+        editJourneyForm.setVisible(false);
         driverForm.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_totalOfTheDayLabelMousePressed
@@ -332,7 +342,16 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(addDriverButton);
         
         contentPaneTitle.setText("Edit existing journey");
-        journeyForm.setVisible(true);
+        
+        
+        loadJourneyList();
+//        if(!editJourneyForm.equals(null)){
+//            contentPane.remove(editJourneyForm);
+//        }
+        editJourneyForm = new JourneyForm(previousJourneys.get(0));
+        contentPane.add(editJourneyForm, contentPaneLayoutConstraints);
+        editJourneyForm.setVisible(true);
+        createJourneyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
         contentPane.repaint();
@@ -345,12 +364,44 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(addDriverButton);
         
         contentPaneTitle.setText("Record new journey");
-        journeyForm.setVisible(true);
+        createJourneyForm.setVisible(true);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_newJourneyLabelMousePressed
 
+    private void loadJourneyList() {
+        previousJourneys = new ArrayList<>();
+        DatabaseManager dbManager = new DatabaseManager();
+        try {
+            Connection conn = dbManager.getConnection();
+            ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
+            int rowCount = 0;
+            while (rows.next()) {
+                rowCount++;
+                Journey journey = new Journey(Integer.parseInt(rows.getString("DRIVERID")), 
+                rows.getString("JOURNEYSTARTTIME"),
+                rows.getString("PICKUPLOCATION"),
+                rows.getString("DESTINATION"),
+                rows.getString("PASSENGERNAME"),
+                Double.parseDouble(rows.getString("FARE")),
+                rows.getString("ACCOUNT"),
+                rows.getString("TELEPHONE"));
+                previousJourneys.add(journey);
+                System.out.println(journey);
+//                selectDriverComboBox.addItem(driver.toString());
+            }
+            if(rowCount == 0){
+                JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add Journey first.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            System.out.println(previousJourneys.size());
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading journeys from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */

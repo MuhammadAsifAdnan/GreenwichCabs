@@ -19,12 +19,20 @@ import javax.swing.JOptionPane;
 public class JourneyForm extends javax.swing.JPanel {
 
     ArrayList<Driver> driverList = new ArrayList<>();
+    Journey existingJourney;
     /**
      * Creates new form RecordJourney
      */
     public JourneyForm() {
         initComponents();
         loadDriverList();
+    }
+
+    public JourneyForm(Journey existingJourney) {
+        this.existingJourney = existingJourney;
+        initComponents();
+        loadDriverList();
+        initForm();
     }
 
     private void loadDriverList() {
@@ -42,6 +50,19 @@ public class JourneyForm extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Error loading drivers from database!", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
+    }
+    
+    private void initForm() {
+        int driverComboBoxIndex = driverList.indexOf(existingJourney.getDriverId());
+        selectDriverComboBox.setSelectedIndex(driverComboBoxIndex);
+        
+        journeyTimeTextField.setText(existingJourney.getTimeOfJourney());
+        pickupLocationTextField.setText(existingJourney.getPickupLocation());
+        destinationTextField.setText(existingJourney.getDestination());
+        passengerNameTextField.setText(existingJourney.getPassengerName());
+        fareTextField.setText(existingJourney.getFare().toString());
+        accountTextField.setText(existingJourney.getAccount());
+        telephoneTextField.setText(existingJourney.getTelephone());
     }
     /**
      * This method is called from within the constructor to initialize the form.
