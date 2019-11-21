@@ -7,6 +7,7 @@ package greenwichcabs;
 
 import java.util.*;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
@@ -276,27 +277,53 @@ public class JourneyForm extends javax.swing.JPanel {
         String pickupLocation = pickupLocationTextField.getText();
         String destination = destinationTextField.getText();
         String passengerName = passengerNameTextField.getText();
-        String fare = fareTextField.getText();
+        Double fare = Double.parseDouble(fareTextField.getText());
         String account = accountTextField.getText();
         String telephone = telephoneTextField.getText();
-
-        
-        
-//        JOptionPane.showMessageDialog(this, "Journey information saved successfully");
-//                
-//        DatabaseManager dbManager = new DatabaseManager();
-//        try {
-//            Connection conn = dbManager.getConnection();
-//            ResultSet rows = dbManager.executeQuery(conn, "Select * from Drivers");
-//            while (rows.next()) {
-//                System.out.println(rows.getString("firstname"));
-//            }
-//            conn.close();
-//        } catch (SQLException e) {
-//            JOptionPane.showMessageDialog(this, "Error executing database query!", "Error", JOptionPane.ERROR_MESSAGE);
-//            e.printStackTrace();
-//        }
                 
+        DatabaseManager dbManager = new DatabaseManager();
+        try {
+            Connection conn = dbManager.getConnection();
+//            String sqlQuery = "INSERT into JOURNEYS VALUES("
+//                    + driverID + ","
+//                    + journeyTime + ","
+//                    + "'pickupLocation'" + ","
+//                    + "'destination'" + ","
+//                    + "'passengerName'" + ","
+//                    + fare + ","
+//                    + "'account'" + ","
+//                    + "'telephone'"
+//                    + ")";
+            
+//            String q1 = "insert into JOURNEYS values('" +id+ "', '" +pwd+  
+//                                  "', '" +fullname+ "', '" +email+ "', '" +email+ "', "
+//                    + "'" +email+ "', '" +email+ "', '" +email+ "', '" +email+ "')"; 
+
+            PreparedStatement pstmt = conn.prepareStatement("INSERT INTO JOURNEYS (DRIVERID,JOURNEYTIME,PICKUPLOCATION,DESTINATION,PASSENGERNAME,FARE,ACCOUNT,TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+            pstmt.setInt(1, driverID);
+            pstmt.setString(2, journeyTime);
+            pstmt.setString(3, pickupLocation);
+            pstmt.setString(4, destination);
+            pstmt.setString(5, passengerName);
+            pstmt.setDouble(6, fare);
+            pstmt.setString(7, account);
+            pstmt.setString(8, telephone);
+//            System.out.println(sqlQuery);
+
+            int i = pstmt.executeUpdate();
+//                    dbManager.executeUpdate(conn, sqlQuery);
+            // executeUpdate method executes insert, update, delete operation. if the return value is 0, the operation
+            // failed. if greater than 0, it succeded
+            if(i>0){
+                JOptionPane.showMessageDialog(this, "Journey information saved successfully");
+            }else {
+                JOptionPane.showMessageDialog(this, "Error saving. Please try again!", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            conn.close();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error executing database query!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
                 
     }//GEN-LAST:event_saveJourneyFormButtonMouseClicked
 

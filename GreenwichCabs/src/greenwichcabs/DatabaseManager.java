@@ -30,6 +30,15 @@ public class DatabaseManager {
         rows = sqlStatement.executeQuery(sqlQuery);
         return rows;
     }
+    
+    public int executeUpdate(Connection conn, String sqlQuery) throws SQLException {
+    Statement sqlStatement = conn.createStatement();
+    // Statement objects executes a SQL query
+    // createStatement returns a Statement object
+    // executeUpdate method executes insert, update, delete operation. if the return value is 0, the operation
+    // failed. if greater than 0, it succeded
+    return sqlStatement.executeUpdate(sqlQuery);
+    }
 //    
 //        private static void databaseConnection() {
 //        
