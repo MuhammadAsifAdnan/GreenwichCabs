@@ -96,5 +96,10 @@ public class Journey {
         this.telephone = telephone;
     }
 
+    @Override
+    public String toString() {
+        return "Journey{" + "driverId=" + driverId + ", timeOfJourney=" + timeOfJourney + ", pickupLocation=" + pickupLocation + ", Destination=" + Destination + '}';
+    }
+
    
 }

@@ -53,9 +53,13 @@ public class JourneyForm extends javax.swing.JPanel {
     }
     
     private void initForm() {
-        int driverComboBoxIndex = driverList.indexOf(existingJourney.getDriverId());
+        int driverComboBoxIndex = -1;
+        for(Driver driver: driverList){
+            if(driver.getId() == existingJourney.getDriverId()){
+                driverComboBoxIndex = driverList.indexOf(driver);
+            }
+        };
         selectDriverComboBox.setSelectedIndex(driverComboBoxIndex);
-        
         journeyTimeTextField.setText(existingJourney.getTimeOfJourney());
         pickupLocationTextField.setText(existingJourney.getPickupLocation());
         destinationTextField.setText(existingJourney.getDestination());

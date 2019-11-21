@@ -25,7 +25,7 @@ public class MainFrame extends javax.swing.JFrame {
     DriverForm driverForm;
     GridBagLayout contentPaneLayout;
     
-    ArrayList<Journey> previousJourneys;
+    ArrayList<Journey> previousJourneys = new ArrayList<>();;
     
     GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
 
@@ -64,6 +64,7 @@ public class MainFrame extends javax.swing.JFrame {
         appTitleUnderline = new javax.swing.JSeparator();
         contentPane = new javax.swing.JPanel();
         contentPaneTitle = new javax.swing.JLabel();
+        selectJourneyComboBox = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -255,7 +256,16 @@ public class MainFrame extends javax.swing.JFrame {
 
         contentPaneTitle.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         contentPaneTitle.setForeground(new java.awt.Color(122, 72, 221));
-        container.add(contentPaneTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 10, 370, 40));
+        container.add(contentPaneTitle, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 0, 520, 30));
+
+        selectJourneyComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectJourneyComboBox.setBorder(null);
+        selectJourneyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectJourneyComboBoxActionPerformed(evt);
+            }
+        });
+        container.add(selectJourneyComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 30, 520, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -298,6 +308,7 @@ public class MainFrame extends javax.swing.JFrame {
         createJourneyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
+        selectJourneyComboBox.setVisible(false);
     }
     
     private void setActiveColor(JPanel jPanel) {
@@ -318,6 +329,7 @@ public class MainFrame extends javax.swing.JFrame {
         driverForm.setVisible(true);
         createJourneyForm.setVisible(false);
         dayTotalPanel.setVisible(false);
+        selectJourneyComboBox.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_addDriverLabelMousePressed
 
@@ -330,8 +342,9 @@ public class MainFrame extends javax.swing.JFrame {
         contentPaneTitle.setText("Total of The Day");
         dayTotalPanel.setVisible(true);
         createJourneyForm.setVisible(false);
-        editJourneyForm.setVisible(false);
+//        editJourneyForm.setVisible(false);
         driverForm.setVisible(false);
+        selectJourneyComboBox.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_totalOfTheDayLabelMousePressed
 
@@ -341,20 +354,11 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
-        contentPaneTitle.setText("Edit existing journey");
-        
+        contentPaneTitle.setText("Select Journey to edit: ");
         
         loadJourneyList();
-//        if(!editJourneyForm.equals(null)){
-//            contentPane.remove(editJourneyForm);
-//        }
-        editJourneyForm = new JourneyForm(previousJourneys.get(0));
-        contentPane.add(editJourneyForm, contentPaneLayoutConstraints);
-        editJourneyForm.setVisible(true);
-        createJourneyForm.setVisible(false);
-        dayTotalPanel.setVisible(false);
-        driverForm.setVisible(false);
-        contentPane.repaint();
+        selectJourneyComboBox.setVisible(true);
+        
     }//GEN-LAST:event_editJourneyLabelMousePressed
 
     private void newJourneyLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newJourneyLabelMousePressed
@@ -367,11 +371,32 @@ public class MainFrame extends javax.swing.JFrame {
         createJourneyForm.setVisible(true);
         dayTotalPanel.setVisible(false);
         driverForm.setVisible(false);
+        selectJourneyComboBox.setVisible(false);
         contentPane.repaint();
     }//GEN-LAST:event_newJourneyLabelMousePressed
 
+    private void selectJourneyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectJourneyComboBoxActionPerformed
+        // TODO add your handling code here:
+        if(!evt.getActionCommand().equals("comboBoxChanged")){
+            return;
+        }
+        if(editJourneyForm == null){
+//            contentPane.remove(editJourneyForm);
+        editJourneyForm = new JourneyForm(previousJourneys.get(selectJourneyComboBox.getSelectedIndex()));
+
+        contentPane.add(editJourneyForm, contentPaneLayoutConstraints);
+        }
+        editJourneyForm = new JourneyForm(previousJourneys.get(selectJourneyComboBox.getSelectedIndex()));
+
+//        contentPane.add(editJourneyForm, contentPaneLayoutConstraints);
+        editJourneyForm.repaint();
+        editJourneyForm.setVisible(true);
+        contentPane.repaint();
+    }//GEN-LAST:event_selectJourneyComboBoxActionPerformed
+
     private void loadJourneyList() {
-        previousJourneys = new ArrayList<>();
+        previousJourneys.clear();
+        selectJourneyComboBox.removeAllItems();
         DatabaseManager dbManager = new DatabaseManager();
         try {
             Connection conn = dbManager.getConnection();
@@ -388,13 +413,11 @@ public class MainFrame extends javax.swing.JFrame {
                 rows.getString("ACCOUNT"),
                 rows.getString("TELEPHONE"));
                 previousJourneys.add(journey);
-                System.out.println(journey);
-//                selectDriverComboBox.addItem(driver.toString());
+                selectJourneyComboBox.addItem(journey.toString());
             }
             if(rowCount == 0){
                 JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add Journey first.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-            System.out.println(previousJourneys.size());
             conn.close();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error loading journeys from database!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -452,6 +475,7 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel newJourneyButton;
     private javax.swing.JLabel newJourneyIcon;
     private javax.swing.JLabel newJourneyLabel;
+    private javax.swing.JComboBox<String> selectJourneyComboBox;
     private javax.swing.JPanel sidePane;
     private javax.swing.JPanel totalOfTheDayButton;
     private javax.swing.JLabel totalOfTheDayIcon;
