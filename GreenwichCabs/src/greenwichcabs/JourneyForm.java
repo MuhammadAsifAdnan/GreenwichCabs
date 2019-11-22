@@ -5,6 +5,7 @@
  */
 package greenwichcabs;
 
+import java.awt.Cursor;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,11 +29,19 @@ public class JourneyForm extends javax.swing.JPanel {
         loadDriverList();
     }
 
-    public JourneyForm(Journey existingJourney) {
+//    public JourneyForm(Journey existingJourney) {
+//        this.existingJourney = existingJourney;
+//        initComponents();
+//        loadDriverList();
+//        initForm();
+//    }
+    
+    public void initializeEditMode(Journey existingJourney) {
         this.existingJourney = existingJourney;
-        initComponents();
         loadDriverList();
         initForm();
+        resetJourneyFormButton.setEnabled(false);
+        resetJourneyFormButton.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
     }
 
     private void loadDriverList() {
@@ -86,7 +95,6 @@ public class JourneyForm extends javax.swing.JPanel {
         labelForTelephone = new javax.swing.JLabel();
         labelForTime = new javax.swing.JLabel();
         selectDriverComboBox = new javax.swing.JComboBox<>();
-        cancelJourneyFormButton = new javax.swing.JButton();
         resetJourneyFormButton = new javax.swing.JButton();
         saveJourneyFormButton = new javax.swing.JButton();
         destinationTextField = new javax.swing.JTextField();
@@ -144,19 +152,17 @@ public class JourneyForm extends javax.swing.JPanel {
         selectDriverComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         selectDriverComboBox.setBorder(null);
 
-        cancelJourneyFormButton.setBackground(new java.awt.Color(64, 43, 100));
-        cancelJourneyFormButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        cancelJourneyFormButton.setForeground(new java.awt.Color(255, 255, 255));
-        cancelJourneyFormButton.setText("Cancel");
-        cancelJourneyFormButton.setBorder(null);
-        cancelJourneyFormButton.setBorderPainted(false);
-
         resetJourneyFormButton.setBackground(new java.awt.Color(64, 43, 100));
         resetJourneyFormButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         resetJourneyFormButton.setForeground(new java.awt.Color(255, 255, 255));
         resetJourneyFormButton.setText("Reset");
         resetJourneyFormButton.setBorder(null);
         resetJourneyFormButton.setBorderPainted(false);
+        resetJourneyFormButton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                resetJourneyFormButtonMouseClicked(evt);
+            }
+        });
 
         saveJourneyFormButton.setBackground(new java.awt.Color(64, 43, 100));
         saveJourneyFormButton.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -199,14 +205,12 @@ public class JourneyForm extends javax.swing.JPanel {
                 .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cancelJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelForTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(labelForTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(44, 44, 44)
                                 .addComponent(resetJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(45, 45, 45)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(saveJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(45, 45, 45)
@@ -229,14 +233,14 @@ public class JourneyForm extends javax.swing.JPanel {
                             .addComponent(journeyTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passengerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fareTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelForAccount, labelForDestination, labelForFare, labelForPassengerName, labelForPickupLocation, labelForSelectDriver, labelForTelephone, labelForTime});
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {accountTextField, destinationTextField, passengerNameTextField, pickupLocationTextField, selectDriverComboBox, telephoneTextField});
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cancelJourneyFormButton, resetJourneyFormButton, saveJourneyFormButton});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {resetJourneyFormButton, saveJourneyFormButton});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -275,7 +279,6 @@ public class JourneyForm extends javax.swing.JPanel {
                     .addComponent(telephoneTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(resetJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
@@ -285,7 +288,7 @@ public class JourneyForm extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {accountTextField, destinationTextField, passengerNameTextField, pickupLocationTextField, selectDriverComboBox, telephoneTextField});
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cancelJourneyFormButton, resetJourneyFormButton, saveJourneyFormButton});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {resetJourneyFormButton, saveJourneyFormButton});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -338,10 +341,23 @@ public class JourneyForm extends javax.swing.JPanel {
                 
     }//GEN-LAST:event_saveJourneyFormButtonMouseClicked
 
+    private void resetJourneyFormButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resetJourneyFormButtonMouseClicked
+        // TODO add your handling code here:
+        if(selectDriverComboBox.getItemCount() != 0){
+            selectDriverComboBox.setSelectedIndex(0);
+        }
+        journeyTimeTextField.setText("");
+        pickupLocationTextField.setText("");
+        destinationTextField.setText("");
+        passengerNameTextField.setText("");
+        fareTextField.setText("");
+        accountTextField.setText("");
+        telephoneTextField.setText("");
+    }//GEN-LAST:event_resetJourneyFormButtonMouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField accountTextField;
-    private javax.swing.JButton cancelJourneyFormButton;
     private javax.swing.JTextField destinationTextField;
     private javax.swing.JTextField fareTextField;
     private javax.swing.JTextField journeyTimeTextField;
