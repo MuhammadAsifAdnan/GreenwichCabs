@@ -411,9 +411,13 @@ public class JourneyForm extends javax.swing.JPanel {
         String passengerName = passengerNameTextField.getText();
         passengerName = passengerName.substring(0, Math.min(passengerName.length(), 50));// Truncating
         Double fare = 0.0;
+        String fareTextFieldValue = fareTextField.getText();
+        if(fareTextFieldValue.length() > 10) {
+            JOptionPane.showMessageDialog(this, "Fare cannot be more than 10 digits!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if(!fareTextField.getText().isEmpty()) {
             try{
-                String fareTextFieldValue = fareTextField.getText();
                 fareTextFieldValue = fareTextFieldValue.substring(0, Math.min(fareTextFieldValue.length(), 10));// Truncating
                 fare = Double.parseDouble(fareTextFieldValue);
             }catch(NumberFormatException ex){
