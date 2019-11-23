@@ -275,7 +275,6 @@ public class MainFrame extends javax.swing.JFrame {
         // creating custom panel objects
         createJourneyForm = new JourneyForm();
         editJourneyForm = new JourneyForm();
-        editJourneyForm.editMode();
         dayTotalPanel = new DayTotal();
         driverForm = new DriverForm();
         contentPaneLayout = new GridBagLayout();
@@ -338,10 +337,10 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
-//        loadJourneyList();
         dayTotalPanel.setVisible(false);
         createJourneyForm.setVisible(false);
         editJourneyForm.setVisible(true);
+        editJourneyForm.editMode(); // call this method to fetch the latest journey list from database everytime this is clicked
         driverForm.setVisible(false);
     }//GEN-LAST:event_editJourneyLabelMousePressed
 

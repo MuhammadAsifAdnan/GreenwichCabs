@@ -6,6 +6,7 @@
 package greenwichcabs;
 
 import java.awt.Cursor;
+import java.awt.event.ItemEvent;
 import java.util.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -20,18 +21,18 @@ import javax.swing.JOptionPane;
  */
 public class JourneyForm extends javax.swing.JPanel {
 
-    ArrayList<Driver> driverList = new ArrayList<>(); // storing driver list from database
-    ArrayList<Journey> previousJourneys = new ArrayList<>(); // storing journey list from database
-    Journey existingJourney; // If this object is initialized, we are editing an existing journey,
-                             // otherwise creating a new journey.
+    ArrayList<Driver> DriverList = new ArrayList<>(); // storing driver list from database
+    ArrayList<Journey> PreviousJourneys = new ArrayList<>(); // storing journey list from database
+    Boolean EditMode = false; // true if we are editing
+    Journey ExistingJourney; // variable to hold the object we will be editing
     /**
      * Creates new form RecordJourney
      */
     public JourneyForm() {
-        initComponents();
-        loadDriverList();
-        selectJourneyComboBox.setVisible(false);
-        labelForSelectJourney.setVisible(false);
+        initComponents(); // auto generated method. initializes gui components added by gui builder 
+        loadDriverList(); // loads driver list from database
+        selectJourneyComboBox.setVisible(false); // only used in edit mode, so setting visibility to false initially
+        labelForSelectJourney.setVisible(false); // only used in edit mode, so setting visibility to false initially
     }
     
     // Loads driver list from database
@@ -40,10 +41,16 @@ public class JourneyForm extends javax.swing.JPanel {
         try {
             Connection conn = dbManager.getConnection();
             ResultSet rows = dbManager.executeQuery(conn, "Select * from Drivers");
+            int rowCount = 0;
             while (rows.next()) {
                 Driver driver = new Driver(Integer.parseInt(rows.getString("ID")), rows.getString("FIRSTNAME"), rows.getString("LASTNAME"), rows.getString("SSN"));
-                driverList.add(driver);
+                DriverList.add(driver);
                 selectDriverComboBox.addItem(driver.toString());
+                if(rowCount == 0) { // we set the selected item index to -1, so that no item is selected by default. we only need 
+                    // to do this once, i.e. the first time
+                    selectDriverComboBox.setSelectedIndex(-1);
+                }
+                rowCount++;
             }
             conn.close();
         } catch(SQLNonTransientConnectionException ex) {
@@ -57,7 +64,7 @@ public class JourneyForm extends javax.swing.JPanel {
     
     // Loads journey list from database
     private void loadJourneyList() {
-        previousJourneys.clear();
+        PreviousJourneys.clear();
         selectJourneyComboBox.removeAllItems();
 
         DatabaseManager dbManager = new DatabaseManager();
@@ -66,7 +73,6 @@ public class JourneyForm extends javax.swing.JPanel {
             ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
             int rowCount = 0;
             while (rows.next()) {
-                rowCount++;
                 Journey journey = new Journey(
                         Integer.parseInt(rows.getString("ID")),
                         Integer.parseInt(rows.getString("DRIVERID")), 
@@ -77,8 +83,12 @@ public class JourneyForm extends javax.swing.JPanel {
                         Double.parseDouble(rows.getString("FARE")),
                         rows.getString("ACCOUNT"),
                         rows.getString("TELEPHONE"));
-                previousJourneys.add(journey);
+                PreviousJourneys.add(journey);
                 selectJourneyComboBox.addItem(journey.toString());
+                if(rowCount == 0) {
+                    selectJourneyComboBox.setSelectedIndex(-1);
+                }
+                rowCount++;
             }
             if(rowCount == 0){
                 JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add a journey first.", "Error", JOptionPane.ERROR_MESSAGE);
@@ -95,29 +105,33 @@ public class JourneyForm extends javax.swing.JPanel {
     }
     
     public void editMode() {
+        EditMode = true;
         loadJourneyList();
+        selectDriverComboBox.setEnabled(false);
         labelForSelectJourney.setVisible(true);
         selectJourneyComboBox.setVisible(true);
+        
         resetJourneyFormButton.setEnabled(false);
         resetJourneyFormButton.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
         saveJourneyFormButton.setText("Update");
     }
     
-    private void initializeForm() {
+    // initializing the form for edit
+    private void initializeFormWithExistingJourneyData() {
         int driverComboBoxIndex = -1;
-        for(Driver driver: driverList){
-            if(driver.getId() == existingJourney.getDriverId()){
-                driverComboBoxIndex = driverList.indexOf(driver);
+        for(Driver driver: DriverList){
+            if(driver.getId() == ExistingJourney.getDriverId()){
+                driverComboBoxIndex = DriverList.indexOf(driver);
             }
         };
         selectDriverComboBox.setSelectedIndex(driverComboBoxIndex);
-        journeyTimeTextField.setText(existingJourney.getTimeOfJourney());
-        pickupLocationTextField.setText(existingJourney.getPickupLocation());
-        destinationTextField.setText(existingJourney.getDestination());
-        passengerNameTextField.setText(existingJourney.getPassengerName());
-        fareTextField.setText(existingJourney.getFare().toString());
-        accountTextField.setText(existingJourney.getAccount());
-        telephoneTextField.setText(existingJourney.getTelephone());
+        journeyTimeTextField.setText(ExistingJourney.getTimeOfJourney());
+        pickupLocationTextField.setText(ExistingJourney.getPickupLocation());
+        destinationTextField.setText(ExistingJourney.getDestination());
+        passengerNameTextField.setText(ExistingJourney.getPassengerName());
+        fareTextField.setText(ExistingJourney.getFare().toString());
+        accountTextField.setText(ExistingJourney.getAccount());
+        telephoneTextField.setText(ExistingJourney.getTelephone());
     }
         
     /**
@@ -366,11 +380,16 @@ public class JourneyForm extends javax.swing.JPanel {
     // This method performs save or edit operation depending on which tab user is in
     private void saveJourneyFormButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveJourneyFormButtonMouseClicked
         int driverComboBoxSelectedItemIndex = selectDriverComboBox.getSelectedIndex(); // Getting the selected driver index of combo box
+        int selectJourneyComboBoxSelectedItemIndex = selectJourneyComboBox.getSelectedIndex(); // Getting the selected driver index of combo box
+        if(EditMode && selectJourneyComboBoxSelectedItemIndex == -1) { // if its edit mode and no journey is selected yet
+            JOptionPane.showMessageDialog(this, "Please select a journey to update!", "Warning", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
         if(driverComboBoxSelectedItemIndex == -1) {
             JOptionPane.showMessageDialog(this, "Please select a driver!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        int driverID = driverList.get(driverComboBoxSelectedItemIndex).getId(); // getting the driver from driverList and then its ID
+        int driverID = DriverList.get(driverComboBoxSelectedItemIndex).getId(); // getting the driver from DriverList and then its ID
         if(journeyTimeTextField.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter journey time!", "Warning", JOptionPane.WARNING_MESSAGE);
             return;
@@ -384,27 +403,35 @@ public class JourneyForm extends javax.swing.JPanel {
             return;
         }
         String journeyStartTime = journeyTimeTextField.getText();
+        journeyStartTime = journeyStartTime.substring(0, Math.min(journeyStartTime.length(), 50)); // Truncating to 50 characters if theres more
         String pickupLocation = pickupLocationTextField.getText();
+        pickupLocation = pickupLocation.substring(0, Math.min(pickupLocation.length(), 100));// Truncating
         String destination = destinationTextField.getText();
+        destination = destination.substring(0, Math.min(destination.length(), 100));// Truncating
         String passengerName = passengerNameTextField.getText();
+        passengerName = passengerName.substring(0, Math.min(passengerName.length(), 50));// Truncating
         Double fare = 0.0;
         if(!fareTextField.getText().isEmpty()) {
             try{
-                fare = Double.parseDouble(fareTextField.getText());
+                String fareTextFieldValue = fareTextField.getText();
+                fareTextFieldValue = fareTextFieldValue.substring(0, Math.min(fareTextFieldValue.length(), 10));// Truncating
+                fare = Double.parseDouble(fareTextFieldValue);
             }catch(NumberFormatException ex){
                 JOptionPane.showMessageDialog(this, "Please provide a valid number in fare field.", "Warning", JOptionPane.WARNING_MESSAGE);
                 return;
             }
         }
         String account = accountTextField.getText();
+        account = account.substring(0, Math.min(account.length(), 50));// Truncating
         String telephone = telephoneTextField.getText();
-                
+        telephone = telephone.substring(0, Math.min(telephone.length(), 50));// Truncating
+        
         DatabaseManager dbManager = new DatabaseManager();
         try {
             Connection conn = dbManager.getConnection();
             PreparedStatement pstmt;
             String operationName;
-            if(existingJourney == null){ // new journey save mode. write insert sql statement
+            if(!EditMode){ // new journey save mode. write insert sql statement
                 pstmt = conn.prepareStatement("INSERT INTO JOURNEYS (DRIVERID,JOURNEYSTARTTIME,PICKUPLOCATION,DESTINATION,PASSENGERNAME,FARE,ACCOUNT,TELEPHONE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
                 operationName = "Sav";
             }else { // journey edit mode. write update sql statement
@@ -421,8 +448,8 @@ public class JourneyForm extends javax.swing.JPanel {
             pstmt.setString(7, account);
             pstmt.setString(8, telephone);
             
-            if(existingJourney != null){ // again, if we are updating, we need to give the ID to which journey row we want to update in db
-                pstmt.setInt(9, existingJourney.getID());
+            if(EditMode){ // again, if we are updating, we need to give the ID to which journey row we want to update in db
+                pstmt.setInt(9, ExistingJourney.getID());
             }
 
             int i = pstmt.executeUpdate();
@@ -434,8 +461,8 @@ public class JourneyForm extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Error  " + operationName + "ing. Please try again!", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
-            if(existingJourney == null) { // reseting fields after saving
-                resetFields();
+            if(!EditMode) { // reseting fields after saving
+                resetForm();
             } else{
                 loadJourneyList();
             }
@@ -451,7 +478,7 @@ public class JourneyForm extends javax.swing.JPanel {
         if(!resetJourneyFormButton.isEnabled()){
             return;
         }
-        resetFields();
+        resetForm();
     }//GEN-LAST:event_resetJourneyFormButtonMouseClicked
 
     // Event handler for any type of change in select journey combo box.. like load items, reload items, click
@@ -463,19 +490,18 @@ public class JourneyForm extends javax.swing.JPanel {
         }
         int selectedJourneyInComboBoxIndex = selectJourneyComboBox.getSelectedIndex();
         if(selectedJourneyInComboBoxIndex != -1){ // Checking if there is any item selected
-            this.existingJourney = previousJourneys.get(selectedJourneyInComboBoxIndex);
-            initializeForm();
-            this.repaint();
+            this.ExistingJourney = PreviousJourneys.get(selectedJourneyInComboBoxIndex);
+            initializeFormWithExistingJourneyData();
+            selectDriverComboBox.setEnabled(true);
         }else {
-            this.existingJourney = null;
+            this.ExistingJourney = null;
+            resetForm();
         }
     }//GEN-LAST:event_selectJourneyComboBoxActionPerformed
 
      // Resets all the fields 
-    private void resetFields(){
-        if(selectDriverComboBox.getItemCount() > 0){
-            selectDriverComboBox.setSelectedIndex(0);
-        }
+    private void resetForm(){
+        selectDriverComboBox.setSelectedIndex(-1);
         journeyTimeTextField.setText("");
         pickupLocationTextField.setText("");
         destinationTextField.setText("");
