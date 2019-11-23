@@ -20,16 +20,21 @@ import javax.swing.JOptionPane;
  */
 public class JourneyForm extends javax.swing.JPanel {
 
-    ArrayList<Driver> driverList = new ArrayList<>();
-    Journey existingJourney;
+    ArrayList<Driver> driverList = new ArrayList<>(); // storing driver list from database
+    ArrayList<Journey> previousJourneys = new ArrayList<>(); // storing journey list from database
+    Journey existingJourney; // If this object is initialized, we are editing an existing journey,
+                             // otherwise creating a new journey.
     /**
      * Creates new form RecordJourney
      */
     public JourneyForm() {
         initComponents();
         loadDriverList();
+        selectJourneyComboBox.setVisible(false);
+        labelForSelectJourney.setVisible(false);
     }
     
+    // Loads driver list from database
     private void loadDriverList() {
         DatabaseManager dbManager = new DatabaseManager();
         try {
@@ -50,7 +55,55 @@ public class JourneyForm extends javax.swing.JPanel {
         }
     }
     
-    private void initForm() {
+    // Loads journey list from database
+    private void loadJourneyList() {
+        previousJourneys.clear();
+        selectJourneyComboBox.removeAllItems();
+
+        DatabaseManager dbManager = new DatabaseManager();
+        try {
+            Connection conn = dbManager.getConnection();
+            ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
+            int rowCount = 0;
+            while (rows.next()) {
+                rowCount++;
+                Journey journey = new Journey(
+                        Integer.parseInt(rows.getString("ID")),
+                        Integer.parseInt(rows.getString("DRIVERID")), 
+                        rows.getString("JOURNEYSTARTTIME"),
+                        rows.getString("PICKUPLOCATION"),
+                        rows.getString("DESTINATION"),
+                        rows.getString("PASSENGERNAME"),
+                        Double.parseDouble(rows.getString("FARE")),
+                        rows.getString("ACCOUNT"),
+                        rows.getString("TELEPHONE"));
+                previousJourneys.add(journey);
+                selectJourneyComboBox.addItem(journey.toString());
+            }
+            if(rowCount == 0){
+                JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add a journey first.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            conn.close();
+        } catch(SQLNonTransientConnectionException ex) {
+            JOptionPane.showMessageDialog(this, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading journeys from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
+    public void editMode() {
+        loadJourneyList();
+        labelForSelectJourney.setVisible(true);
+        selectJourneyComboBox.setVisible(true);
+        resetJourneyFormButton.setEnabled(false);
+        resetJourneyFormButton.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
+        saveJourneyFormButton.setText("Update");
+    }
+    
+    private void initializeForm() {
         int driverComboBoxIndex = -1;
         for(Driver driver: driverList){
             if(driver.getId() == existingJourney.getDriverId()){
@@ -65,15 +118,6 @@ public class JourneyForm extends javax.swing.JPanel {
         fareTextField.setText(existingJourney.getFare().toString());
         accountTextField.setText(existingJourney.getAccount());
         telephoneTextField.setText(existingJourney.getTelephone());
-    }
-    
-    public void initializeEditMode(Journey existingJourney) {
-        this.existingJourney = existingJourney;
-        loadDriverList();
-        initForm();
-        resetJourneyFormButton.setEnabled(false);
-        resetJourneyFormButton.setCursor(new Cursor(Cursor.CROSSHAIR_CURSOR));
-        saveJourneyFormButton.setText("Update");
     }
         
     /**
@@ -103,10 +147,13 @@ public class JourneyForm extends javax.swing.JPanel {
         pickupLocationTextField = new javax.swing.JTextField();
         journeyTimeTextField = new javax.swing.JTextField();
         fareTextField = new javax.swing.JTextField();
+        labelForSelectJourney = new javax.swing.JLabel();
+        selectJourneyComboBox = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(122, 72, 221));
         setForeground(new java.awt.Color(64, 43, 100));
-        setPreferredSize(new java.awt.Dimension(550, 430));
+        setMaximumSize(new java.awt.Dimension(550, 500));
+        setPreferredSize(new java.awt.Dimension(550, 500));
 
         labelForPickupLocation.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         labelForPickupLocation.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,13 +245,31 @@ public class JourneyForm extends javax.swing.JPanel {
         fareTextField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         fareTextField.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
 
+        labelForSelectJourney.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelForSelectJourney.setForeground(new java.awt.Color(255, 255, 255));
+        labelForSelectJourney.setLabelFor(selectDriverComboBox);
+        labelForSelectJourney.setText("Select Journey");
+        labelForSelectJourney.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+
+        selectJourneyComboBox.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        selectJourneyComboBox.setBorder(null);
+        selectJourneyComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectJourneyComboBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(49, 49, 49)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(labelForSelectJourney, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(45, 45, 45)
+                        .addComponent(selectJourneyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(labelForTelephone, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -234,7 +299,7 @@ public class JourneyForm extends javax.swing.JPanel {
                             .addComponent(journeyTimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(passengerNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(fareTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(55, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelForAccount, labelForDestination, labelForFare, labelForPassengerName, labelForPickupLocation, labelForSelectDriver, labelForTelephone, labelForTime});
@@ -246,7 +311,11 @@ public class JourneyForm extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(37, 37, 37)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelForSelectJourney, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(selectJourneyComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelForSelectDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(selectDriverComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -282,7 +351,7 @@ public class JourneyForm extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(saveJourneyFormButton, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelForAccount, labelForDestination, labelForFare, labelForPassengerName, labelForPickupLocation, labelForSelectDriver, labelForTelephone, labelForTime});
@@ -293,6 +362,8 @@ public class JourneyForm extends javax.swing.JPanel {
 
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    // This method performs save or edit operation depending on which tab user is in
     private void saveJourneyFormButtonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_saveJourneyFormButtonMouseClicked
         int driverComboBoxSelectedItemIndex = selectDriverComboBox.getSelectedIndex(); // Getting the selected driver index of combo box
         if(driverComboBoxSelectedItemIndex == -1) {
@@ -366,7 +437,7 @@ public class JourneyForm extends javax.swing.JPanel {
             if(existingJourney == null) { // reseting fields after saving
                 resetFields();
             } else{
-                
+                loadJourneyList();
             }
             conn.close();
         } catch (SQLException e) {
@@ -383,6 +454,24 @@ public class JourneyForm extends javax.swing.JPanel {
         resetFields();
     }//GEN-LAST:event_resetJourneyFormButtonMouseClicked
 
+    // Event handler for any type of change in select journey combo box.. like load items, reload items, click
+    // on item etc.
+    private void selectJourneyComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectJourneyComboBoxActionPerformed
+        // TODO add your handling code here:
+        if(!evt.getActionCommand().equals("comboBoxChanged")){
+            return;
+        }
+        int selectedJourneyInComboBoxIndex = selectJourneyComboBox.getSelectedIndex();
+        if(selectedJourneyInComboBoxIndex != -1){ // Checking if there is any item selected
+            this.existingJourney = previousJourneys.get(selectedJourneyInComboBoxIndex);
+            initializeForm();
+            this.repaint();
+        }else {
+            this.existingJourney = null;
+        }
+    }//GEN-LAST:event_selectJourneyComboBoxActionPerformed
+
+     // Resets all the fields 
     private void resetFields(){
         if(selectDriverComboBox.getItemCount() > 0){
             selectDriverComboBox.setSelectedIndex(0);
@@ -407,6 +496,7 @@ public class JourneyForm extends javax.swing.JPanel {
     private javax.swing.JLabel labelForPassengerName;
     private javax.swing.JLabel labelForPickupLocation;
     private javax.swing.JLabel labelForSelectDriver;
+    private javax.swing.JLabel labelForSelectJourney;
     private javax.swing.JLabel labelForTelephone;
     private javax.swing.JLabel labelForTime;
     private javax.swing.JTextField passengerNameTextField;
@@ -414,6 +504,7 @@ public class JourneyForm extends javax.swing.JPanel {
     private javax.swing.JButton resetJourneyFormButton;
     private javax.swing.JButton saveJourneyFormButton;
     private javax.swing.JComboBox<String> selectDriverComboBox;
+    private javax.swing.JComboBox<String> selectJourneyComboBox;
     private javax.swing.JFormattedTextField telephoneTextField;
     // End of variables declaration//GEN-END:variables
 }
