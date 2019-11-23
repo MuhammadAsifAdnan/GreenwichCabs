@@ -27,26 +27,28 @@ public class DriverForm extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelForDriverName = new javax.swing.JLabel();
-        driverName = new javax.swing.JFormattedTextField();
+        labelForDriverLastName = new javax.swing.JLabel();
+        driverLastName = new javax.swing.JFormattedTextField();
         labelForDriverSSN = new javax.swing.JLabel();
         driverSSN = new javax.swing.JTextField();
         saveNewDriverFormButton = new javax.swing.JButton();
         cancelAddDriverFormButton = new javax.swing.JButton();
+        labelForDriverFirstName = new javax.swing.JLabel();
+        driverFirstName = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(122, 72, 221));
         setPreferredSize(new java.awt.Dimension(550, 430));
 
-        labelForDriverName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        labelForDriverName.setForeground(new java.awt.Color(255, 255, 255));
-        labelForDriverName.setLabelFor(driverName);
-        labelForDriverName.setText("Name");
+        labelForDriverLastName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelForDriverLastName.setForeground(new java.awt.Color(255, 255, 255));
+        labelForDriverLastName.setLabelFor(driverLastName);
+        labelForDriverLastName.setText("Last Name");
 
-        driverName.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
-        driverName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        driverName.addActionListener(new java.awt.event.ActionListener() {
+        driverLastName.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+        driverLastName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        driverLastName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                driverNameActionPerformed(evt);
+                driverLastNameActionPerformed(evt);
             }
         });
 
@@ -72,6 +74,19 @@ public class DriverForm extends javax.swing.JPanel {
         cancelAddDriverFormButton.setBorder(null);
         cancelAddDriverFormButton.setBorderPainted(false);
 
+        labelForDriverFirstName.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        labelForDriverFirstName.setForeground(new java.awt.Color(255, 255, 255));
+        labelForDriverFirstName.setLabelFor(driverLastName);
+        labelForDriverFirstName.setText("First Name");
+
+        driverFirstName.setBorder(javax.swing.BorderFactory.createCompoundBorder(null, javax.swing.BorderFactory.createEmptyBorder(1, 10, 1, 10)));
+        driverFirstName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        driverFirstName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                driverFirstNameActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -87,25 +102,33 @@ public class DriverForm extends javax.swing.JPanel {
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(labelForDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(labelForDriverLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(driverName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(driverLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(labelForDriverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(driverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(driverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(labelForDriverFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(45, 45, 45)
+                                .addComponent(driverFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(105, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelForDriverName, labelForDriverSSN});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {labelForDriverLastName, labelForDriverSSN});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(110, 110, 110)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelForDriverName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(driverName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelForDriverFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driverFirstName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelForDriverLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(driverLastName, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelForDriverSSN, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -117,20 +140,26 @@ public class DriverForm extends javax.swing.JPanel {
                 .addContainerGap(110, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelForDriverName, labelForDriverSSN});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {labelForDriverLastName, labelForDriverSSN});
 
     }// </editor-fold>//GEN-END:initComponents
 
-    private void driverNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverNameActionPerformed
+    private void driverLastNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverLastNameActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_driverNameActionPerformed
+    }//GEN-LAST:event_driverLastNameActionPerformed
+
+    private void driverFirstNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_driverFirstNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_driverFirstNameActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelAddDriverFormButton;
-    private javax.swing.JFormattedTextField driverName;
+    private javax.swing.JFormattedTextField driverFirstName;
+    private javax.swing.JFormattedTextField driverLastName;
     private javax.swing.JTextField driverSSN;
-    private javax.swing.JLabel labelForDriverName;
+    private javax.swing.JLabel labelForDriverFirstName;
+    private javax.swing.JLabel labelForDriverLastName;
     private javax.swing.JLabel labelForDriverSSN;
     private javax.swing.JButton saveNewDriverFormButton;
     // End of variables declaration//GEN-END:variables

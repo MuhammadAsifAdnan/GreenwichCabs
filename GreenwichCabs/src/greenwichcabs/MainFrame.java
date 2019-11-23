@@ -9,6 +9,7 @@ import java.awt.*; // color, layout etc
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
 import java.util.ArrayList;
 import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 
@@ -358,7 +359,7 @@ public class MainFrame extends javax.swing.JFrame {
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
-        contentPaneTitle.setText("Select Journey to edit: ");
+        contentPaneTitle.setText("Select Journey to Update: ");
         
         loadJourneyList();
         dayTotalPanel.setVisible(false);
@@ -394,9 +395,8 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void loadEditJourneyForm() {
         int selectedJourneyInComboBoxIndex = selectJourneyComboBox.getSelectedIndex();
-        if(selectedJourneyInComboBoxIndex != -1){
+        if(selectedJourneyInComboBoxIndex != -1){ // Checking if there is any item selected
             editJourneyForm.initializeEditMode(previousJourneys.get(selectedJourneyInComboBoxIndex));
-            editJourneyForm.repaint();
             editJourneyForm.setVisible(true);
             contentPane.repaint();
         }
@@ -413,21 +413,27 @@ public class MainFrame extends javax.swing.JFrame {
             int rowCount = 0;
             while (rows.next()) {
                 rowCount++;
-                Journey journey = new Journey(Integer.parseInt(rows.getString("DRIVERID")), 
-                rows.getString("JOURNEYSTARTTIME"),
-                rows.getString("PICKUPLOCATION"),
-                rows.getString("DESTINATION"),
-                rows.getString("PASSENGERNAME"),
-                Double.parseDouble(rows.getString("FARE")),
-                rows.getString("ACCOUNT"),
-                rows.getString("TELEPHONE"));
+                Journey journey = new Journey(
+                        Integer.parseInt(rows.getString("ID")),
+                        Integer.parseInt(rows.getString("DRIVERID")), 
+                        rows.getString("JOURNEYSTARTTIME"),
+                        rows.getString("PICKUPLOCATION"),
+                        rows.getString("DESTINATION"),
+                        rows.getString("PASSENGERNAME"),
+                        Double.parseDouble(rows.getString("FARE")),
+                        rows.getString("ACCOUNT"),
+                        rows.getString("TELEPHONE"));
                 previousJourneys.add(journey);
                 selectJourneyComboBox.addItem(journey.toString());
             }
             if(rowCount == 0){
                 JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add a journey first.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             conn.close();
+        } catch(SQLNonTransientConnectionException ex) {
+            JOptionPane.showMessageDialog(this, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Error loading journeys from database!", "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();

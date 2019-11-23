@@ -4,10 +4,7 @@
  * and open the template in the editor.
  */
 package greenwichcabs;
-import java.util.ArrayList;
-import java.util.List;
 import javax.swing.*;
-import java.sql.*;
 
 /**
  *
@@ -28,3 +25,16 @@ public class GreenwichCabs {
         mainFrame.setVisible(true);
     }
 }
+
+//CREATE TABLE JOURNEYS (
+//    ID INT NOT NULL GENERATED ALWAYS AS IDENTITY,
+//    DRIVERID INT NOT NULL,
+//    JOURNEYSTARTTIME VARCHAR(50),
+//    PICKUPLOCATION VARCHAR(100),
+//    DESTINATION VARCHAR(100),
+//    PASSENGERNAME VARCHAR(50),
+//    FARE DECIMAL(15),
+//    ACCOUNT VARCHAR(50),
+//    TELEPHONE VARCHAR(50),
+//    PRIMARY KEY (Id)
+//);

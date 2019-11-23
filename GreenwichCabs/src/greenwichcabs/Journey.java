@@ -5,13 +5,12 @@
  */
 package greenwichcabs;
 
-import java.util.Date;
-
 /**
  *
  * @author aa
  */
 public class Journey {
+    private int ID;
     private int driverId;
     private String timeOfJourney;
     private String pickupLocation;
@@ -21,7 +20,8 @@ public class Journey {
     private String account;
     private String telephone;
 
-    public Journey(int driverId, String timeOfJourney, String pickupLocation, String Destination, String passengerName, Double fare, String account, String telephone) {
+    public Journey(int id, int driverId, String timeOfJourney, String pickupLocation, String Destination, String passengerName, Double fare, String account, String telephone) {
+        this.ID = id;
         this.driverId = driverId;
         this.timeOfJourney = timeOfJourney;
         this.pickupLocation = pickupLocation;
@@ -32,6 +32,14 @@ public class Journey {
         this.telephone = telephone;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int Id) {
+        this.ID = Id;
+    }
+    
     public int getDriverId() {
         return driverId;
     }
@@ -98,8 +106,7 @@ public class Journey {
 
     @Override
     public String toString() {
-        return "Journey{" + "driverId=" + driverId + ", timeOfJourney=" + timeOfJourney + ", pickupLocation=" + pickupLocation + ", Destination=" + Destination + '}';
+        return "ID: " + ID + ", DriverID: " + driverId + ", Start time: " + timeOfJourney + ", Fare: " + fare;
     }
 
-   
 }
