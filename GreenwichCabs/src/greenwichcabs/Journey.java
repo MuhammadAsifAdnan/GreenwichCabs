@@ -106,7 +106,7 @@ public class Journey {
 
     @Override
     public String toString() {
-        return "ID: " + ID + ", DriverID: " + driverId + ", Start time: " + timeOfJourney + ", Fare: " + fare;
+        return "Journey id: " + ID + ", Driver id: " + driverId + ", Start time: " + timeOfJourney + ", Fare: " + fare;
     }
 
 }

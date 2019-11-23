@@ -12,12 +12,11 @@ import java.sql.*;
  * @author user
  */
 public class DatabaseManager {
-    private Connection conn = null; // A connection object is used to provide access to a database
     private ResultSet rows = null;
     
-    private String connectionString = "jdbc:derby://localhost:1527/greenwichcabsDB";
-    private String userName = "anika";
-    private String password = "asif";
+    private final String connectionString = "jdbc:derby://localhost:1527/greenwichcabsDB";
+    private final String userName = "anika";
+    private final String password = "asif";
     
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(connectionString, userName, password);
@@ -38,27 +37,5 @@ public class DatabaseManager {
     // executeUpdate method executes insert, update, delete operation. if the return value is 0, the operation
     // failed. if greater than 0, it succeded
     return sqlStatement.executeUpdate(sqlQuery);
-    }
-//    
-//        private static void databaseConnection() {
-//        
-//        try{
-//            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/greenwichcabs", "asif", "Wonder4U");
-//            // Statement objects executes a SQL query
-//            // createStatement returns a Statement object
-//            Statement sqlStatement = conn.createStatement();
-//            String selectStuff = "Select * from Drivers";
-//            ResultSet rows = sqlStatement.executeQuery(selectStuff);
-//            
-//            while(rows.next()){
-//                System.out.println(rows.getString("ID"));
-//                System.out.println(rows.getString("FIRSTNAME") + " " + rows.getString("LASTNAME"));
-//                System.out.println(rows.getString("ssn"));
-//            }
-//            
-//        }catch(SQLException e){
-//            e.printStackTrace();
-//        }
-//    }
-    
+    }    
 }
