@@ -27,25 +27,30 @@ public class DayTotal extends javax.swing.JPanel {
         loadJourneyList();
     }
     
+// Loads journey list from database
     private void loadJourneyList() {
+        JourneyList.clear();
+
         DatabaseManager dbManager = new DatabaseManager();
         try {
             Connection conn = dbManager.getConnection();
             ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
             int rowCount = 0;
             while (rows.next()) {
-                Journey journey = new Journey(
-                        Integer.parseInt(rows.getString("ID")),
-                        Integer.parseInt(rows.getString("DRIVERID")), 
-                        rows.getString("JOURNEYSTARTTIME"),
-                        rows.getString("PICKUPLOCATION"),
-                        rows.getString("DESTINATION"),
-                        rows.getString("PASSENGERNAME"),
-                        Double.parseDouble(rows.getString("FARE")),
-                        rows.getString("ACCOUNT"),
-                        rows.getString("TELEPHONE"));
-                JourneyList.add(journey);
-
+    
+                int ID = Integer.parseInt(rows.getString("ID"));
+                int driverID = Integer.parseInt(rows.getString("DRIVERID"));
+                String journeyStartTime = rows.getString("JOURNEYSTARTTIME");
+                String pickupLocation = rows.getString("PICKUPLOCATION");
+                String destination = rows.getString("DESTINATION");
+                String passengerName = rows.getString("PASSENGERNAME");
+                Double fare = Double.parseDouble(rows.getString("FARE"));
+                String account = rows.getString("ACCOUNT");
+                String telephone = rows.getString("TELEPHONE");
+                
+                Journey journey = new Journey(ID, driverID, journeyStartTime, pickupLocation, destination,
+                                                passengerName, fare, account, telephone);
+                JourneyList.add(journey); // Adding the journey object we got from db to journeyList
                 rowCount++;
             }
             if(rowCount == 0){
@@ -53,6 +58,7 @@ public class DayTotal extends javax.swing.JPanel {
                 return;
             }
             conn.close();
+            
         } catch(SQLNonTransientConnectionException ex) {
             JOptionPane.showMessageDialog(this, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
@@ -61,7 +67,6 @@ public class DayTotal extends javax.swing.JPanel {
             e.printStackTrace();
         }
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.

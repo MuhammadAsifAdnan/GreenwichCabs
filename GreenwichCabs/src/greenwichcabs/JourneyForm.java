@@ -81,7 +81,7 @@ public class JourneyForm extends javax.swing.JPanel {
             ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
             int rowCount = 0;
             while (rows.next()) {
-                
+    
                 int ID = Integer.parseInt(rows.getString("ID"));
                 int driverID = Integer.parseInt(rows.getString("DRIVERID"));
                 String journeyStartTime = rows.getString("JOURNEYSTARTTIME");
