@@ -22,7 +22,7 @@ import javax.swing.JOptionPane;
 public class JourneyForm extends javax.swing.JPanel {
 
     ArrayList<Driver> DriverList = new ArrayList<>(); // storing driver list from database
-    ArrayList<Journey> PreviousJourneys = new ArrayList<>(); // storing journey list from database
+    ArrayList<Journey> JourneyList = new ArrayList<>(); // storing journey list from database
     Boolean EditMode = false; // true if we are editing
     Journey ExistingJourney; // variable to hold the object we will be editing
     /**
@@ -64,7 +64,7 @@ public class JourneyForm extends javax.swing.JPanel {
     
     // Loads journey list from database
     private void loadJourneyList() {
-        PreviousJourneys.clear();
+        JourneyList.clear();
         selectJourneyComboBox.removeAllItems();
 
         DatabaseManager dbManager = new DatabaseManager();
@@ -83,7 +83,7 @@ public class JourneyForm extends javax.swing.JPanel {
                         Double.parseDouble(rows.getString("FARE")),
                         rows.getString("ACCOUNT"),
                         rows.getString("TELEPHONE"));
-                PreviousJourneys.add(journey);
+                JourneyList.add(journey);
                 selectJourneyComboBox.addItem(journey.toString());
                 if(rowCount == 0) {
                     selectJourneyComboBox.setSelectedIndex(-1);
@@ -494,7 +494,7 @@ public class JourneyForm extends javax.swing.JPanel {
         }
         int selectedJourneyInComboBoxIndex = selectJourneyComboBox.getSelectedIndex();
         if(selectedJourneyInComboBoxIndex != -1){ // Checking if there is any item selected
-            this.ExistingJourney = PreviousJourneys.get(selectedJourneyInComboBoxIndex);
+            this.ExistingJourney = JourneyList.get(selectedJourneyInComboBoxIndex);
             initializeFormWithExistingJourneyData();
             selectDriverComboBox.setEnabled(true);
         }else {

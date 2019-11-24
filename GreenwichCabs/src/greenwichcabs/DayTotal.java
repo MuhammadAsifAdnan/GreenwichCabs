@@ -5,18 +5,63 @@
  */
 package greenwichcabs;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.SQLNonTransientConnectionException;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author user
  */
 public class DayTotal extends javax.swing.JPanel {
 
+    ArrayList<Journey> JourneyList = new ArrayList<>(); // storing journey list from database
     /**
      * Creates new form DayTotal
      */
     public DayTotal() {
         initComponents();
+        loadJourneyList();
     }
+    
+    private void loadJourneyList() {
+        DatabaseManager dbManager = new DatabaseManager();
+        try {
+            Connection conn = dbManager.getConnection();
+            ResultSet rows = dbManager.executeQuery(conn, "Select * from JOURNEYS");
+            int rowCount = 0;
+            while (rows.next()) {
+                Journey journey = new Journey(
+                        Integer.parseInt(rows.getString("ID")),
+                        Integer.parseInt(rows.getString("DRIVERID")), 
+                        rows.getString("JOURNEYSTARTTIME"),
+                        rows.getString("PICKUPLOCATION"),
+                        rows.getString("DESTINATION"),
+                        rows.getString("PASSENGERNAME"),
+                        Double.parseDouble(rows.getString("FARE")),
+                        rows.getString("ACCOUNT"),
+                        rows.getString("TELEPHONE"));
+                JourneyList.add(journey);
+
+                rowCount++;
+            }
+            if(rowCount == 0){
+                JOptionPane.showMessageDialog(this, "No journey recorded yet! Please add a journey first.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            conn.close();
+        } catch(SQLNonTransientConnectionException ex) {
+            JOptionPane.showMessageDialog(this, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading journeys from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

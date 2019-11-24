@@ -194,7 +194,7 @@ public class MainFrame extends javax.swing.JFrame {
 
         totalOfTheDayLabel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         totalOfTheDayLabel.setForeground(new java.awt.Color(255, 255, 255));
-        totalOfTheDayLabel.setText("Total of The Day");
+        totalOfTheDayLabel.setText("Total for The Day");
         totalOfTheDayLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 totalOfTheDayLabelMousePressed(evt);
