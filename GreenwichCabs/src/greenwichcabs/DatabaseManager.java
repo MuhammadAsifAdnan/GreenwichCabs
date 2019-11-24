@@ -11,12 +11,12 @@ import java.sql.*;
  *
  * @author user
  */
-public class DatabaseManager {
-    private ResultSet rows = null;
-    
+public class DatabaseManager {   
     private final String connectionString = "jdbc:derby://localhost:1527/greenwichcabsDB";
     private final String userName = "anika";
     private final String password = "asif";
+    
+    private ResultSet rows = null;
     
     public Connection getConnection() throws SQLException {
         return DriverManager.getConnection(connectionString, userName, password);
@@ -30,6 +30,7 @@ public class DatabaseManager {
         return rows;
     }
     
+    // for insert, update, delete operations
     public int executeUpdate(Connection conn, String sqlQuery) throws SQLException {
     Statement sqlStatement = conn.createStatement();
     // Statement objects executes a SQL query

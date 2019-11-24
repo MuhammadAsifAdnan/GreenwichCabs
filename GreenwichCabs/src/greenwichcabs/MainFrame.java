@@ -6,11 +6,6 @@
 package greenwichcabs;
 
 import java.awt.*; // color, layout etc
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.SQLNonTransientConnectionException;
-import java.util.ArrayList;
 import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 
 /**
@@ -20,12 +15,13 @@ import javax.swing.*; // JFrame, JPanel, JLabel, JButtons etc
 public class MainFrame extends javax.swing.JFrame {
     
     /*** Variable declaration of custom panels to be displayed in ContentPane ****/
-    JourneyForm createJourneyForm;
-    JourneyForm editJourneyForm;
+    JourneyForm createJourneyPanel;
+    JourneyForm editJourneyPanel;
     DayTotal dayTotalPanel;
-    DriverForm driverForm;
-    GridBagLayout contentPaneLayout;
+    DriverForm addDriverPanel;
     
+//    Layout declaration for these panels
+    GridBagLayout contentPaneLayout;
     GridBagConstraints contentPaneLayoutConstraints = new GridBagConstraints();
 
     /**
@@ -273,87 +269,101 @@ public class MainFrame extends javax.swing.JFrame {
         contentPaneLayoutConstraints.gridx = 0;
         contentPaneLayoutConstraints.gridy = 0;
         // creating custom panel objects
-        createJourneyForm = new JourneyForm();
-        editJourneyForm = new JourneyForm();
+        createJourneyPanel = new JourneyForm();
+        editJourneyPanel = new JourneyForm();
         dayTotalPanel = new DayTotal();
-        driverForm = new DriverForm();
+        addDriverPanel = new DriverForm();
+        
         contentPaneLayout = new GridBagLayout();
         
         // Setting up layout for contentPane.
         contentPane.setLayout(contentPaneLayout);
         
-        
         // adding custom panels to contentPane
-        contentPane.add(createJourneyForm, contentPaneLayoutConstraints);
-        contentPane.add(editJourneyForm, contentPaneLayoutConstraints);
+        contentPane.add(createJourneyPanel, contentPaneLayoutConstraints);
+        contentPane.add(editJourneyPanel, contentPaneLayoutConstraints);
         contentPane.add(dayTotalPanel, contentPaneLayoutConstraints);
-        contentPane.add(driverForm, contentPaneLayoutConstraints);
+        contentPane.add(addDriverPanel, contentPaneLayoutConstraints);
         
         // setting all the custom panels visibility to false. we will make them visible when user clicks respective button
         // on the sidePane
-        createJourneyForm.setVisible(false);
-        editJourneyForm.setVisible(false);
+        createJourneyPanel.setVisible(false);
+        editJourneyPanel.setVisible(false);
         dayTotalPanel.setVisible(false);
-        driverForm.setVisible(false);
+        addDriverPanel.setVisible(false);
     }
     
-    private void setActiveColor(JPanel jPanel) {
+    private void setActiveColor(JPanel jPanel) { // Setting sidepanel active button color 
         jPanel.setBackground(new Color(85,65,111));
     }
     
-    private void setDefaultColor(JPanel jPanel) {
+    private void setDefaultColor(JPanel jPanel) {// Setting sidepanel default button color 
         jPanel.setBackground(new Color(64,43,100));
     }
     
     private void addDriverLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addDriverLabelMousePressed
+        // Here we will set active color to addDriver button, and default colour to the rest of the buttons
+        // And we will make the addDriverPanel visible, and hide rest of the three panels
         setActiveColor(addDriverButton);
         setDefaultColor(newJourneyButton);
         setDefaultColor(editJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         
-        driverForm.setVisible(true);
-        createJourneyForm.setVisible(false);
-        editJourneyForm.setVisible(false);
+        addDriverPanel.setVisible(true);
+        createJourneyPanel.setVisible(false);
+        editJourneyPanel.setVisible(false);
         dayTotalPanel.setVisible(false);
+        
         contentPane.repaint();
     }//GEN-LAST:event_addDriverLabelMousePressed
 
     private void totalOfTheDayLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_totalOfTheDayLabelMousePressed
+        // Here we will set active color to totalForTheDay button, and default colour to the rest of the buttons
+        // And we will make the totalForTheDayPanel visible, and hide rest of the three panels
         setActiveColor(totalOfTheDayButton);
         setDefaultColor(newJourneyButton);
         setDefaultColor(editJourneyButton);
         setDefaultColor(addDriverButton);
         
         dayTotalPanel.setVisible(true);
-        createJourneyForm.setVisible(false);
-        editJourneyForm.setVisible(false);
-        driverForm.setVisible(false);
+        createJourneyPanel.setVisible(false);
+        editJourneyPanel.setVisible(false);
+        addDriverPanel.setVisible(false);
+        
         contentPane.repaint();
     }//GEN-LAST:event_totalOfTheDayLabelMousePressed
 
     private void editJourneyLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editJourneyLabelMousePressed
+        // Here we will set active color to editJourney button, and default colour to the rest of the buttons
+        // And we will make the editJourneyPanel visible, and hide rest of the three panels
+        // Also we will call the editMode() method of editJorney to configure the class to perform edit
         setActiveColor(editJourneyButton);
         setDefaultColor(newJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
         dayTotalPanel.setVisible(false);
-        createJourneyForm.setVisible(false);
-        editJourneyForm.setVisible(true);
-        editJourneyForm.editMode(); // call this method to fetch the latest journey list from database everytime this is clicked
-        driverForm.setVisible(false);
+        createJourneyPanel.setVisible(false);
+        editJourneyPanel.setVisible(true);
+        editJourneyPanel.editMode(); // call this method to fetch the latest journey list
+                                    // from database everytime this is clicked
+        addDriverPanel.setVisible(false);
+        contentPane.repaint();
     }//GEN-LAST:event_editJourneyLabelMousePressed
 
     private void newJourneyLabelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_newJourneyLabelMousePressed
+        // Here we will set active color to newJourney button, and default colour to the rest of the buttons
+        // And we will make the newJourneyPanel visible, and hide rest of the three panels
         setActiveColor(newJourneyButton);
         setDefaultColor(editJourneyButton);
         setDefaultColor(totalOfTheDayButton);
         setDefaultColor(addDriverButton);
         
-        createJourneyForm.setVisible(true);
-        editJourneyForm.setVisible(false);
+        createJourneyPanel.setVisible(true);
+        editJourneyPanel.setVisible(false);
         dayTotalPanel.setVisible(false);
-        driverForm.setVisible(false);
+        addDriverPanel.setVisible(false);
+        
         contentPane.repaint();
     }//GEN-LAST:event_newJourneyLabelMousePressed
     
