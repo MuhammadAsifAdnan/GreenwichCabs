@@ -19,31 +19,78 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DayTotal extends javax.swing.JPanel {
 
+    ArrayList<Driver> DriverList = new ArrayList<>();
     ArrayList<Journey> JourneyList = new ArrayList<>(); // storing journey list from database
     /**
      * Creates new form DayTotal
      */
     public DayTotal() {
         initComponents();
+        loadDriverList();
         loadJourneyList();
                 
         DefaultTableModel summaryTable = (DefaultTableModel)totalForTheDaySummary.getModel();
         DefaultTableModel detailTable = (DefaultTableModel)totalForTheDayDetails.getModel();
-        // setting titles
-        summaryTable.setValueAt("Total for the day", 0, 0);
-        summaryTable.setValueAt("Total jobs of the day", 1, 0);
-        summaryTable.setValueAt("Expected % of the day", 2, 0);
         
+        double totalForTheDay = 0.0;
+        int numberOfJourneys = JourneyList.size();
+        for(int i = 0; i < JourneyList.size(); i++) {
+            totalForTheDay += JourneyList.get(i).getFare();
+        }
+        double expectedPercentage = (totalForTheDay * 20) / 100;
+
+        summaryTable.addRow(new Object[]{"Total for the day", totalForTheDay});
+        summaryTable.addRow(new Object[]{"Total jobs of the day", numberOfJourneys});
+        summaryTable.addRow(new Object[]{"Expected % of the day", expectedPercentage});
         
-        detailTable.setColumnIdentifiers("Driver");
+        String[] detailTableHeaders = {"Driver", "Takings", "%", "Jobs done"};
+        detailTable.setColumnIdentifiers( detailTableHeaders );
         
-//        detailTable.setValueAt("Driver", 0, 0);
-//        detailTable.setValueAt("Takings", 0, 1);
-//        detailTable.setValueAt("%", 0, 2);
-//        detailTable.setValueAt("Jobs done", 0, 3);
-        
-        
+        for(int i = 0; i< DriverList.size(); i++){            
+            final int driverId = DriverList.get(i).getId();
+            double driverEarnings = 0.0;
+            int driverJobsCount = 0;
+            for(int j=0; j<JourneyList.size(); j++){
+                if(driverId == JourneyList.get(j).getDriverId()){
+                    driverEarnings += JourneyList.get(j).getFare();
+                    driverJobsCount++;
+                }
+            }
+            double driverPercentage = (driverEarnings * 20) / 100;
+            detailTable.addRow(new Object[] {driverId , driverEarnings, driverPercentage, driverJobsCount});
+        }    
     }
+    
+    
+    // Loads driver list from database
+    private void loadDriverList() {
+        DriverList.clear(); // emptying the list
+        
+        DatabaseManager dbManager = new DatabaseManager();
+        try {
+            Connection conn = dbManager.getConnection();
+            ResultSet rows = dbManager.executeQuery(conn, "Select * from Drivers");
+            int rowCount = 0;
+            while (rows.next()) {
+                int ID = Integer.parseInt(rows.getString("ID"));
+                String firstName = rows.getString("FIRSTNAME");
+                String lastName = rows.getString("LASTNAME");
+                String SSN = rows.getString("SSN");
+                
+                Driver driver = new Driver(ID , firstName, lastName, SSN);
+                DriverList.add(driver); // Adding the driver object we got from db to driverList 
+                rowCount++;
+            }
+            conn.close();
+        } catch(SQLNonTransientConnectionException ex) { // Catching DB connection error
+            JOptionPane.showMessageDialog(this, "Error connecting to database!", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(this, "Error loading drivers from database!", "Error", JOptionPane.ERROR_MESSAGE);
+            e.printStackTrace();
+        }
+    }
+
     
 // Loads journey list from database
     private void loadJourneyList() {
@@ -107,9 +154,7 @@ public class DayTotal extends javax.swing.JPanel {
 
         totalForTheDaySummary.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "", ""
@@ -134,16 +179,7 @@ public class DayTotal extends javax.swing.JPanel {
 
         totalForTheDayDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Driver", "Takings", "%", "Jobs done"
