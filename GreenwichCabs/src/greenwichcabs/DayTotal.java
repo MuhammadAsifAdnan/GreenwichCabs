@@ -35,12 +35,12 @@ public class DayTotal extends javax.swing.JPanel {
         summaryTable.setValueAt("Expected % of the day", 2, 0);
         
         
+        detailTable.setColumnIdentifiers("Driver");
         
-        
-        detailTable.setValueAt("Driver", 0, 0);
-        detailTable.setValueAt("Takings", 0, 1);
-        detailTable.setValueAt("%", 0, 2);
-        detailTable.setValueAt("Jobs done", 0, 3);
+//        detailTable.setValueAt("Driver", 0, 0);
+//        detailTable.setValueAt("Takings", 0, 1);
+//        detailTable.setValueAt("%", 0, 2);
+//        detailTable.setValueAt("Jobs done", 0, 3);
         
         
     }
