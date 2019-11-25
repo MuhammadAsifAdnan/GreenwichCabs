@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.SQLNonTransientConnectionException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -25,6 +26,23 @@ public class DayTotal extends javax.swing.JPanel {
     public DayTotal() {
         initComponents();
         loadJourneyList();
+                
+        DefaultTableModel summaryTable = (DefaultTableModel)totalForTheDaySummary.getModel();
+        DefaultTableModel detailTable = (DefaultTableModel)totalForTheDayDetails.getModel();
+        // setting titles
+        summaryTable.setValueAt("Total for the day", 0, 0);
+        summaryTable.setValueAt("Total jobs of the day", 1, 0);
+        summaryTable.setValueAt("Expected % of the day", 2, 0);
+        
+        
+        
+        
+        detailTable.setValueAt("Driver", 0, 0);
+        detailTable.setValueAt("Takings", 0, 1);
+        detailTable.setValueAt("%", 0, 2);
+        detailTable.setValueAt("Jobs done", 0, 3);
+        
+        
     }
     
 // Loads journey list from database
@@ -77,33 +95,105 @@ public class DayTotal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        totalForTheDaySummary = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        totalForTheDayDetails = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(122, 72, 221));
         setPreferredSize(new java.awt.Dimension(550, 430));
 
-        jLabel1.setText("Total");
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(452, 100));
+
+        totalForTheDaySummary.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "", ""
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Float.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(totalForTheDaySummary);
+
+        totalForTheDayDetails.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Driver", "Takings", "%", "Jobs done"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Float.class, java.lang.Float.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        totalForTheDayDetails.setPreferredSize(new java.awt.Dimension(150, 200));
+        jScrollPane2.setViewportView(totalForTheDayDetails);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jLabel1)
-                .addContainerGap(329, Short.MAX_VALUE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addGap(25, 25, 25)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(178, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable totalForTheDayDetails;
+    private javax.swing.JTable totalForTheDaySummary;
     // End of variables declaration//GEN-END:variables
 }
